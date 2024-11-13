@@ -181,34 +181,34 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         val adapter = FontAdapter(config, context!!)
 
-        view_config_font_spinner.adapter = adapter
+//        view_config_font_spinner.adapter = adapter
 
-        view_config_font_spinner.background.setColorFilter(
-            if (config.isNightMode) {
-                R.color.night_default_font_color
-            } else {
-                R.color.day_default_font_color
-            },
-            PorterDuff.Mode.SRC_ATOP
-        )
+//        view_config_font_spinner.background.setColorFilter(
+//            if (config.isNightMode) {
+//                R.color.night_default_font_color
+//            } else {
+//                R.color.day_default_font_color
+//            },
+//            PorterDuff.Mode.SRC_ATOP
+//        )
 
         val fontIndex = adapter.fontKeyList.indexOf(config.font)
-        view_config_font_spinner.setSelection(if (fontIndex < 0) 0 else fontIndex)
-
-        view_config_font_spinner.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    selectFont(adapter.fontKeyList[position], true)
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                }
-            }
+//        view_config_font_spinner.setSelection(if (fontIndex < 0) 0 else fontIndex)
+//
+//        view_config_font_spinner.onItemSelectedListener =
+//            object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(
+//                    parent: AdapterView<*>?,
+//                    view: View?,
+//                    position: Int,
+//                    id: Long
+//                ) {
+//                    selectFont(adapter.fontKeyList[position], true)
+//                }
+//
+//                override fun onNothingSelected(parent: AdapterView<*>?) {
+//                }
+//            }
     }
 
     private fun selectFont(selectedFont: String, isReloadNeeded: Boolean) {
