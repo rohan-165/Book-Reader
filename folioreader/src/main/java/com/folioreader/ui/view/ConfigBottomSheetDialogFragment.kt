@@ -113,8 +113,8 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         if (config.allowedDirection != Config.AllowedDirection.VERTICAL_AND_HORIZONTAL) {
             view5.visibility = View.GONE
-            buttonVertical.visibility = View.GONE
-            buttonHorizontal.visibility = View.GONE
+//            buttonVertical.visibility = View.GONE
+//            buttonHorizontal.visibility = View.GONE
         }
 
         view_config_ib_day_mode.setOnClickListener {
@@ -144,29 +144,29 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             dialog?.hide()
         }
 
-        if (activityCallback.direction == Config.Direction.HORIZONTAL) {
-            buttonHorizontal.isSelected = true
-        } else if (activityCallback.direction == Config.Direction.VERTICAL) {
-            buttonVertical.isSelected = true
-        }
+//        if (activityCallback.direction == Config.Direction.HORIZONTAL) {
+//            buttonHorizontal.isSelected = true
+//        } else if (activityCallback.direction == Config.Direction.VERTICAL) {
+//            buttonVertical.isSelected = true
+//        }
 
-        buttonVertical.setOnClickListener {
-            config = AppUtil.getSavedConfig(context)!!
-            config.direction = Config.Direction.VERTICAL
-            AppUtil.saveConfig(context, config)
-            activityCallback.onDirectionChange(Config.Direction.VERTICAL)
-            buttonHorizontal.isSelected = false
-            buttonVertical.isSelected = true
-        }
-
-        buttonHorizontal.setOnClickListener {
-            config = AppUtil.getSavedConfig(context)!!
-            config.direction = Config.Direction.HORIZONTAL
-            AppUtil.saveConfig(context, config)
-            activityCallback.onDirectionChange(Config.Direction.HORIZONTAL)
-            buttonHorizontal.isSelected = true
-            buttonVertical.isSelected = false
-        }
+//        buttonVertical.setOnClickListener {
+//            config = AppUtil.getSavedConfig(context)!!
+//            config.direction = Config.Direction.VERTICAL
+//            AppUtil.saveConfig(context, config)
+//            activityCallback.onDirectionChange(Config.Direction.VERTICAL)
+//            buttonHorizontal.isSelected = false
+//            buttonVertical.isSelected = true
+//        }
+//
+//        buttonHorizontal.setOnClickListener {
+//            config = AppUtil.getSavedConfig(context)!!
+//            config.direction = Config.Direction.HORIZONTAL
+//            AppUtil.saveConfig(context, config)
+//            activityCallback.onDirectionChange(Config.Direction.HORIZONTAL)
+//            buttonHorizontal.isSelected = true
+//            buttonVertical.isSelected = false
+//        }
     }
 
     private fun configFonts() {
@@ -176,8 +176,8 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             ContextCompat.getColor(context!!, R.color.grey_color)
         )
 
-        buttonVertical.setTextColor(colorStateList)
-        buttonHorizontal.setTextColor(colorStateList)
+//        buttonVertical.setTextColor(colorStateList)
+//        buttonHorizontal.setTextColor(colorStateList)
 
         val adapter = FontAdapter(config, context!!)
 
