@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    android:background="@drawable/rounded_corners_background"
+    android:elevation="10dp"
+    android:hardwareAccelerated="false"
     android:layout_width="match_parent"
     android:layout_height="203dp"
     tools:layout_gravity="bottom">
