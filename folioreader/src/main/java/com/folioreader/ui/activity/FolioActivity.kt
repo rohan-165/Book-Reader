@@ -374,7 +374,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         // Update toolbar colors
         createdMenu?.let { m ->
             UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemBookmark).icon)
-            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemSearch).icon)
+//            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemSearch).icon)
             UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemConfig).icon)
             UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemTts).icon)
         }
@@ -402,7 +402,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         // Update toolbar colors
         createdMenu?.let { m ->
             UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemBookmark).icon)
-            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemSearch).icon)
+//            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemSearch).icon)
             UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemConfig).icon)
             UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemTts).icon)
         }
@@ -440,9 +440,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             UiUtil.setColorIntToDrawable(
                 config.currentThemeColor, menu.findItem(R.id.itemBookmark).icon
             )
-            UiUtil.setColorIntToDrawable(
-                config.currentThemeColor, menu.findItem(R.id.itemSearch).icon
-            )
+//            UiUtil.setColorIntToDrawable(
+//                config.currentThemeColor, menu.findItem(R.id.itemSearch).icon
+//            )
             UiUtil.setColorIntToDrawable(
                 config.currentThemeColor, menu.findItem(R.id.itemConfig).icon
             )
@@ -511,18 +511,18 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
                 return true
             }
-            R.id.itemSearch -> {
-                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
-                if (searchUri == null) return true
-                val intent = Intent(this, SearchActivity::class.java)
-                intent.putExtra(SearchActivity.BUNDLE_SPINE_SIZE, spine?.size ?: 0)
-                intent.putExtra(SearchActivity.BUNDLE_SEARCH_URI, searchUri)
-                intent.putExtra(SearchAdapter.DATA_BUNDLE, searchAdapterDataBundle)
-                intent.putExtra(SearchActivity.BUNDLE_SAVE_SEARCH_QUERY, searchQuery)
-                startActivityForResult(intent, RequestCode.SEARCH.value)
-                return true
-
-            }
+//            R.id.itemSearch -> {
+//                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
+//                if (searchUri == null) return true
+//                val intent = Intent(this, SearchActivity::class.java)
+//                intent.putExtra(SearchActivity.BUNDLE_SPINE_SIZE, spine?.size ?: 0)
+//                intent.putExtra(SearchActivity.BUNDLE_SEARCH_URI, searchUri)
+//                intent.putExtra(SearchAdapter.DATA_BUNDLE, searchAdapterDataBundle)
+//                intent.putExtra(SearchActivity.BUNDLE_SAVE_SEARCH_QUERY, searchQuery)
+//                startActivityForResult(intent, RequestCode.SEARCH.value)
+//                return true
+//
+//            }
             R.id.itemConfig -> {
                 Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
                 showConfigBottomSheetDialogFragment()
