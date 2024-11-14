@@ -11,12 +11,12 @@
         app:showAsAction="ifRoom"
         tools:showAsAction="always" />
 
-    <item
-        android:id="@+id/itemSearch"
-        android:icon="@drawable/ic_search"
-        android:title="@string/menu_item_search"
-        app:showAsAction="ifRoom"
-        tools:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/itemSearch"-->
+<!--        android:icon="@drawable/ic_search"-->
+<!--        android:title="@string/menu_item_search"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        tools:showAsAction="always" />-->
 
     <item
         android:id="@+id/itemConfig"
@@ -25,13 +25,20 @@
         app:showAsAction="ifRoom"
         tools:showAsAction="always" />
 
-
     <item
-        android:id="@+id/itemTts"
-        android:icon="@drawable/man_speech_icon"
-        android:title="@string/menu_item_tts"
-        android:visible="false"
+        android:id="@+id/itemDrawer"
+        android:icon="@drawable/ic_drawer"
+        android:title="@string/menu_item_config"
         app:showAsAction="ifRoom"
         tools:showAsAction="always" />
+
+
+<!--    <item-->
+<!--        android:id="@+id/itemTts"-->
+<!--        android:icon="@drawable/man_speech_icon"-->
+<!--        android:title="@string/menu_item_tts"-->
+<!--        android:visible="false"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        tools:showAsAction="always" />-->
 
 </menu>

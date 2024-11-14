@@ -114,7 +114,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private var mEpubSourceType: EpubSourceType? = null
     private var mEpubRawId = 0
     private var mediaControllerFragment: MediaControllerFragment? = null
-    private var direction: Config.Direction = Config.Direction.VERTICAL
+    private var direction: Config.Direction = Config.Direction.HORIZONTAL
     private var portNumber: Int = DEFAULT_PORT_NUMBER
     private var streamerUri: Uri? = null
 
@@ -328,7 +328,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
-        val drawable = ContextCompat.getDrawable(this, R.drawable.ic_drawer)
+        val drawable = ContextCompat.getDrawable(this, R.drawable.abc_vector_test)
         UiUtil.setColorIntToDrawable(config.currentThemeColor, drawable!!)
         toolbar!!.navigationIcon = drawable
 
@@ -374,9 +374,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         // Update toolbar colors
         createdMenu?.let { m ->
             UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemBookmark).icon)
-            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemSearch).icon)
+//            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemSearch).icon)
             UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemConfig).icon)
-            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemTts).icon)
+            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemDrawer).icon)
+//            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemTts).icon)
         }
 
         toolbar?.getOverflowIcon()?.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
@@ -402,9 +403,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         // Update toolbar colors
         createdMenu?.let { m ->
             UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemBookmark).icon)
-            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemSearch).icon)
+//            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemSearch).icon)
             UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemConfig).icon)
-            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemTts).icon)
+            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemDrawer).icon)
+//            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemTts).icon)
         }
 
         toolbar?.getOverflowIcon()?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
@@ -440,15 +442,18 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             UiUtil.setColorIntToDrawable(
                 config.currentThemeColor, menu.findItem(R.id.itemBookmark).icon
             )
-            UiUtil.setColorIntToDrawable(
-                config.currentThemeColor, menu.findItem(R.id.itemSearch).icon
-            )
+//            UiUtil.setColorIntToDrawable(
+//                config.currentThemeColor, menu.findItem(R.id.itemSearch).icon
+//            )
             UiUtil.setColorIntToDrawable(
                 config.currentThemeColor, menu.findItem(R.id.itemConfig).icon
             )
-            UiUtil.setColorIntToDrawable(config.currentThemeColor, menu.findItem(R.id.itemTts).icon)
+            UiUtil.setColorIntToDrawable(
+                config.currentThemeColor, menu.findItem(R.id.itemDrawer).icon
+            )
+//            UiUtil.setColorIntToDrawable(config.currentThemeColor, menu.findItem(R.id.itemTts).icon)
 
-            if (!config.isShowTts) menu.findItem(R.id.itemTts).isVisible = false
+//            if (!config.isShowTts) menu.findItem(R.id.itemTts).isVisible = false
         } catch (e: Exception) {
             Log.e("FOLIOREADER", e.message.toString())
         }
@@ -462,9 +467,16 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         when (item.itemId) {
             android.R.id.home -> {
                 Log.v(LOG_TAG, "-> onOptionsItemSelected -> drawer")
+                finish()
+                return true
+            }
+
+            R.id.itemDrawer -> {
+                Log.v(LOG_TAG, "-> onOptionsItemSelected -> drawer")
                 startContentHighlightActivity()
                 return true
             }
+
             R.id.itemBookmark -> {
                 val readLocator = currentFragment!!.getLastReadLocator()
                 Log.v(LOG_TAG, "-> onOptionsItemSelected 'if' -> bookmark")
@@ -511,29 +523,29 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
                 return true
             }
-            R.id.itemSearch -> {
-                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
-                if (searchUri == null) return true
-                val intent = Intent(this, SearchActivity::class.java)
-                intent.putExtra(SearchActivity.BUNDLE_SPINE_SIZE, spine?.size ?: 0)
-                intent.putExtra(SearchActivity.BUNDLE_SEARCH_URI, searchUri)
-                intent.putExtra(SearchAdapter.DATA_BUNDLE, searchAdapterDataBundle)
-                intent.putExtra(SearchActivity.BUNDLE_SAVE_SEARCH_QUERY, searchQuery)
-                startActivityForResult(intent, RequestCode.SEARCH.value)
-                return true
-
-            }
+//            R.id.itemSearch -> {
+//                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
+//                if (searchUri == null) return true
+//                val intent = Intent(this, SearchActivity::class.java)
+//                intent.putExtra(SearchActivity.BUNDLE_SPINE_SIZE, spine?.size ?: 0)
+//                intent.putExtra(SearchActivity.BUNDLE_SEARCH_URI, searchUri)
+//                intent.putExtra(SearchAdapter.DATA_BUNDLE, searchAdapterDataBundle)
+//                intent.putExtra(SearchActivity.BUNDLE_SAVE_SEARCH_QUERY, searchQuery)
+//                startActivityForResult(intent, RequestCode.SEARCH.value)
+//                return true
+//
+//            }
             R.id.itemConfig -> {
                 Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
                 showConfigBottomSheetDialogFragment()
                 return true
 
             }
-            R.id.itemTts -> {
-                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
-                showMediaController()
-                return true
-            }
+//            R.id.itemTts -> {
+//                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
+//                showMediaController()
+//                return true
+//            }
             else -> return super.onOptionsItemSelected(item)
         }
 
