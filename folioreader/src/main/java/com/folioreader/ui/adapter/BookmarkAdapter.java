@@ -80,21 +80,21 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
 
             }
         });
-        holder.container.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                final int height = holder.container.getHeight();
-                ((AppCompatActivity) context).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ViewGroup.LayoutParams params =
-                                holder.swipeLinearLayout.getLayoutParams();
-                        params.height = height;
-                        holder.swipeLinearLayout.setLayoutParams(params);
-                    }
-                });
-            }
-        }, 30);
+//        holder.container.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                final int height = holder.container.getHeight();
+//                ((AppCompatActivity) context).runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ViewGroup.LayoutParams params =
+//                                holder.swipeLinearLayout.getLayoutParams();
+//                        params.height = height;
+//                        holder.swipeLinearLayout.setLayoutParams(params);
+//                    }
+//                });
+//            }
+//        }, 30);
         if (config.isNightMode()) {
             holder.container.setBackgroundColor(ContextCompat.getColor(context,
                     R.color.black));
@@ -128,13 +128,15 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
         private UnderlinedTextView content;
         private ImageView delete;
         private TextView date;
-        private RelativeLayout container;
-        private LinearLayout swipeLinearLayout;
+        private LinearLayout container;
+//        private RelativeLayout dateRow;
+
 
         BookmarkHolder(View itemView) {
             super(itemView);
-            container = (RelativeLayout) itemView.findViewById(R.id.bookmark_container);
-            swipeLinearLayout = (LinearLayout) itemView.findViewById(R.id.bookmark_swipe_linear_layout);
+            container = (LinearLayout) itemView.findViewById(R.id.bookMark_Row);
+//            dateRow = (RelativeLayout) itemView.findViewById(R.id.bookMark_Row);
+
             content = (UnderlinedTextView) itemView.findViewById(R.id.utv_bookmark_content);
             delete = (ImageView) itemView.findViewById(R.id.iv_bookmark_delete);
             date = (TextView) itemView.findViewById(R.id.tv_bookmark_date);
