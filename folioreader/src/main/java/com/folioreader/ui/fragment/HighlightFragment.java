@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +28,7 @@ import com.folioreader.model.event.UpdateHighlightEvent;
 import com.folioreader.model.sqlite.HighLightTable;
 import com.folioreader.ui.adapter.HighlightAdapter;
 import com.folioreader.util.AppUtil;
+import com.folioreader.util.ItemDecoration;
 import com.folioreader.util.HighlightUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -67,14 +67,21 @@ public class HighlightFragment extends Fragment implements HighlightAdapter.High
         RecyclerView highlightsView = (RecyclerView) mRootView.findViewById(R.id.rv_highlights);
         Config config = AppUtil.getSavedConfig(getActivity());
         mBookId = getArguments().getString(FolioReader.EXTRA_BOOK_ID);
-
         if (config.isNightMode()) {
             mRootView.findViewById(R.id.rv_highlights).
                     setBackgroundColor(ContextCompat.getColor(getActivity(),
                             R.color.black));
         }
+        // Example usage with padding = 10, border color = gray, corner radius = 8f, elevation = 4f
+        ItemDecoration decoration = new ItemDecoration(
+                20,
+                ContextCompat.getColor(getContext(), R.color.borders),
+                12f,
+                4f
+        );
         highlightsView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        highlightsView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+//        highlightsView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        highlightsView.addItemDecoration(decoration);
 
         adapter = new HighlightAdapter(getActivity(), HighLightTable.getAllHighlights(mBookId), this, config);
         highlightsView.setAdapter(adapter);
