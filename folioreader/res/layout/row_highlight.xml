@@ -60,7 +60,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_play" />
+                android:src="@drawable/highlight_icon" />
 
             <com.folioreader.ui.view.UnderlinedTextView
                 android:id="@+id/utv_highlight_content"
@@ -70,7 +70,8 @@
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:minLines="1"
-                android:textColor="@color/black"
+                android:elegantTextHeight="true"
+                android:textColor="@color/day_underline_icon_fill_color_top"
                 android:textSize="17sp" />
 
 
@@ -83,7 +84,7 @@
             android:layout_below="@+id/highlightNote"
             android:ellipsize="end"
             android:text=""
-            android:textColor="@color/black"
+            android:textColor="@color/day_underline_icon_fill_color_top"
             android:textSize="14sp" />
 
         <TextView

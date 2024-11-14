@@ -18,12 +18,17 @@ class ItemDecoration(
     ItemDecoration() {
     // Initialize the paint for the border
     private val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val shadowPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     // Constructor for defining decoration properties
     init {
         borderPaint.style = Paint.Style.STROKE
         borderPaint.color = borderColor
         borderPaint.strokeWidth = 4f // Define the border thickness here
+
+        // Shadow paint setup
+        shadowPaint.style = Paint.Style.FILL
+        shadowPaint.setShadowLayer(elevation, 0f, elevation / 2, borderColor) // Shadow color with alpha
     }
 
     override fun getItemOffsets(
@@ -46,6 +51,10 @@ class ItemDecoration(
             val top = child.top - padding / 2f
             val right = child.right + padding / 2f
             val bottom = child.bottom + padding / 2f
+
+            // Draw the shadow
+//            val shadowRectF = RectF(left, top, right, bottom)
+//            canvas.drawRoundRect(shadowRectF, cornerRadius, cornerRadius, shadowPaint)
 
             // Draw the rounded border
             val rectF = RectF(left, top, right, bottom)

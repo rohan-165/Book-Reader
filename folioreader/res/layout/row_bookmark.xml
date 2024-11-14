@@ -25,27 +25,40 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <TextView
-            android:id="@+id/tv_bookmark_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="20 sep 2016"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
 
-        <com.folioreader.ui.view.UnderlinedTextView
+ <LinearLayout
+     android:id="@+id/bookMark_Row"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content">
+
+     <ImageView
+         android:layout_width="24dp"
+         android:layout_height="24dp"
+         android:layout_marginRight="10dp"
+         android:src="@drawable/saved"
+         />
+
+     <com.folioreader.ui.view.UnderlinedTextView
             android:id="@+id/utv_bookmark_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_bookmark_date"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="3"
             android:minLines="1"
             android:textColor="@color/black"
             android:textSize="17sp" />
+ </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_bookmark_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 sep 2016"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/bookMark_Row"
+            android:textColor="@color/gray_text"
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
     </RelativeLayout>
 </com.daimajia.swipe.SwipeLayout>

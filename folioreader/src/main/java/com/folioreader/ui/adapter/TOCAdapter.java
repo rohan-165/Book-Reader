@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -106,6 +107,7 @@ public class TOCAdapter extends MultiLevelExpIndListAdapter {
                     R.color.black));
             viewHolder.sectionTitle.setTextColor(ContextCompat.getColor(mContext,
                     R.color.white));
+            viewHolder.contentSuffixIcon.setVisibility(View.VISIBLE);
         } else {
             viewHolder.container.setBackgroundColor(ContextCompat.getColor(mContext,
                     R.color.white));
@@ -113,6 +115,7 @@ public class TOCAdapter extends MultiLevelExpIndListAdapter {
                     R.color.white));
             viewHolder.sectionTitle.setTextColor(ContextCompat.getColor(mContext,
                     R.color.black));
+            viewHolder.contentSuffixIcon.setVisibility(View.VISIBLE);
         }
         if (tocLinkWrapper.getTocLink().getHref().equals(selectedHref)) {
             viewHolder.sectionTitle.setTextColor(mConfig.getCurrentThemeColor());
@@ -127,15 +130,17 @@ public class TOCAdapter extends MultiLevelExpIndListAdapter {
 
     public class TOCRowViewHolder extends RecyclerView.ViewHolder {
         public ImageView children;
+        public ImageView contentSuffixIcon;
         TextView sectionTitle;
-        private LinearLayout container;
+        private RelativeLayout container;
         private View view;
 
         TOCRowViewHolder(View itemView) {
             super(itemView);
             view = itemView;
             children = (ImageView) itemView.findViewById(R.id.children);
-            container = (LinearLayout) itemView.findViewById(R.id.container);
+            contentSuffixIcon = (ImageView) itemView.findViewById(R.id.content_icon);
+            container = (RelativeLayout) itemView.findViewById(R.id.container);
             children.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
