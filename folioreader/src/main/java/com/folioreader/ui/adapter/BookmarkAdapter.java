@@ -1,5 +1,6 @@
 package com.folioreader.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.Html;
 import android.util.Log;
@@ -51,7 +52,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
     }
 
     @Override
-    public void onBindViewHolder(final BookmarkHolder holder, final int position) {
+    public void onBindViewHolder(final BookmarkHolder holder, @SuppressLint("RecyclerView") final int position) {
         holder.container.postDelayed(new Runnable() {
             @Override
             public void run() {
