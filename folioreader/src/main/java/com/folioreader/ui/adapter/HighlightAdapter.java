@@ -118,7 +118,7 @@ public class HighlightAdapter extends RecyclerView.Adapter<HighlightAdapter.High
             holder.note.setTextColor(ContextCompat.getColor(context,
                     R.color.white));
             holder.date.setTextColor(ContextCompat.getColor(context,
-                    R.color.white));
+                    R.color.gray_text));
             holder.content.setTextColor(ContextCompat.getColor(context,
                     R.color.white));
         } else {
@@ -127,7 +127,7 @@ public class HighlightAdapter extends RecyclerView.Adapter<HighlightAdapter.High
             holder.note.setTextColor(ContextCompat.getColor(context,
                     R.color.black));
             holder.date.setTextColor(ContextCompat.getColor(context,
-                    R.color.black));
+                    R.color.gray_text));
             holder.content.setTextColor(ContextCompat.getColor(context,
                     R.color.black));
         }

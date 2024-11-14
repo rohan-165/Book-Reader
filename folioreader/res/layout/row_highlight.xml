@@ -34,36 +34,66 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <TextView
-            android:id="@+id/tv_highlight_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="20 sep 2016"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+<!--        <com.folioreader.ui.view.UnderlinedTextView-->
+<!--            android:id="@+id/utv_highlight_content"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:ellipsize="end"-->
+<!--            android:maxLines="3"-->
+<!--            android:minLines="1"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="17sp" />-->
 
-        <com.folioreader.ui.view.UnderlinedTextView
-            android:id="@+id/utv_highlight_content"
-            android:layout_width="wrap_content"
+        <!-- Horizontal LinearLayout to align UnderlinedTextView with an ImageView -->
+        <LinearLayout
+            android:id="@+id/highlightNote"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_highlight_date"
+            android:orientation="horizontal"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:minLines="1"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_play" />
+
+            <com.folioreader.ui.view.UnderlinedTextView
+                android:id="@+id/utv_highlight_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:minLines="1"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/utv_highlight_content"
+            android:layout_below="@+id/highlightNote"
             android:ellipsize="end"
             android:text=""
             android:textColor="@color/black"
             android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_highlight_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 sep 2016"
+            android:textColor="@color/gray_text"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:layout_below="@+id/tv_note"/>
     </RelativeLayout>
 </com.daimajia.swipe.SwipeLayout>
