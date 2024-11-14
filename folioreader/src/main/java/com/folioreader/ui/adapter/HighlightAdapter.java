@@ -154,12 +154,10 @@ public class HighlightAdapter extends RecyclerView.Adapter<HighlightAdapter.High
         private TextView date;
         private RelativeLayout container;
         private TextView note;
-//        private LinearLayout swipeLinearLayout;
 
         HighlightHolder(View itemView) {
             super(itemView);
             container = (RelativeLayout) itemView.findViewById(R.id.container);
-//            swipeLinearLayout = (LinearLayout) itemView.findViewById(R.id.swipe_linear_layout);
             content = (UnderlinedTextView) itemView.findViewById(R.id.utv_highlight_content);
             delete = (ImageView) itemView.findViewById(R.id.iv_delete);
             editNote = (ImageView) itemView.findViewById(R.id.iv_edit_note);

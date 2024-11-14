@@ -92,7 +92,6 @@ public class BookmarkFragment extends Fragment implements BookmarkAdapter.Bookma
                 4f
         );
         bookmarksView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        bookmarksView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         bookmarksView.addItemDecoration(decoration);
 
         adapter = new BookmarkAdapter(getActivity(), BookmarkTable.getBookmarksForID(mBookId, getActivity()), this, config);

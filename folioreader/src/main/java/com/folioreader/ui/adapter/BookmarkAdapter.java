@@ -120,7 +120,6 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
     }
 
     private HashMap getItem(int position) {
-
         return bookmarks.get(position);
     }
 
@@ -130,14 +129,10 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
         private ImageView delete;
         private TextView date;
         private LinearLayout container;
-//        private RelativeLayout dateRow;
-
 
         BookmarkHolder(View itemView) {
             super(itemView);
             container = (LinearLayout) itemView.findViewById(R.id.bookMark_Row);
-//            dateRow = (RelativeLayout) itemView.findViewById(R.id.bookMark_Row);
-
             content = (UnderlinedTextView) itemView.findViewById(R.id.utv_bookmark_content);
             delete = (ImageView) itemView.findViewById(R.id.iv_bookmark_delete);
             date = (TextView) itemView.findViewById(R.id.tv_bookmark_date);
