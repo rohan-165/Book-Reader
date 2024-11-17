@@ -91,12 +91,15 @@ public class HighlightAdapter extends RecyclerView.Adapter<HighlightAdapter.High
         if (getItem(position).getNote() != null) {
             if (getItem(position).getNote().isEmpty()) {
                 holder.note.setVisibility(View.GONE);
+                holder.noteIcon.setVisibility(View.GONE); // Hide noteIcon if note is empty
             } else {
                 holder.note.setVisibility(View.VISIBLE);
                 holder.note.setText(getItem(position).getNote());
+                holder.noteIcon.setVisibility(View.VISIBLE); // Show noteIcon if note is not empty
             }
         } else {
             holder.note.setVisibility(View.GONE);
+            holder.noteIcon.setVisibility(View.GONE); // Hide noteIcon if note is null
         }
 //        holder.container.postDelayed(new Runnable() {
 //            @Override
@@ -150,7 +153,8 @@ public class HighlightAdapter extends RecyclerView.Adapter<HighlightAdapter.High
 
     static class HighlightHolder extends RecyclerView.ViewHolder {
         private UnderlinedTextView content;
-        private ImageView delete, editNote;
+        private ImageView delete,  noteIcon;
+        private LinearLayout  editNote;
         private TextView date;
         private RelativeLayout container;
         private TextView note;
@@ -160,9 +164,10 @@ public class HighlightAdapter extends RecyclerView.Adapter<HighlightAdapter.High
             container = (RelativeLayout) itemView.findViewById(R.id.container);
             content = (UnderlinedTextView) itemView.findViewById(R.id.utv_highlight_content);
             delete = (ImageView) itemView.findViewById(R.id.iv_delete);
-            editNote = (ImageView) itemView.findViewById(R.id.iv_edit_note);
+            editNote = (LinearLayout) itemView.findViewById(R.id.iv_edit_note_layout);
             date = (TextView) itemView.findViewById(R.id.tv_highlight_date);
             note = (TextView) itemView.findViewById(R.id.tv_note);
+            noteIcon = (ImageView) itemView.findViewById(R.id.tv_note_icon);
         }
     }
 
