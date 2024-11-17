@@ -38,6 +38,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
@@ -520,9 +521,14 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                     dialog.dismiss()
                 }
 
+                dialog.findViewById<View>(R.id.close_button).setOnClickListener {
+                    dialog.dismiss()
+                }
+
 
                 return true
             }
+
 //            R.id.itemSearch -> {
 //                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
 //                if (searchUri == null) return true
