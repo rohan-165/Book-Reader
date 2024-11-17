@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="290dp"
-    android:layout_height="250dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="290dp"
-        android:layout_height="250dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@color/white">
+        android:background="@drawable/rounded_corner_background">
 
         <TextView
             android:id="@+id/lbl_heading"
@@ -18,12 +18,15 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/edit_notes"
-            android:textSize="23sp" />
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/edit_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Your note"
             android:lines="5"
             android:gravity="start"
             android:layout_below="@id/lbl_heading"
@@ -39,11 +42,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/edit_note"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:text="@string/save_note"
             android:textColor="@android:color/white"
-            android:background="@color/default_theme_accent_color"
+            android:background="@drawable/rounded_button_background"
             android:textAllCaps="false"
             android:textSize="16sp" />
+
+        <!-- Close Button -->
+        <ImageView
+            android:id="@+id/edit_close_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/cross"
+            android:contentDescription="close"
+            android:clickable="true"
+            android:focusable="true" />
     </RelativeLayout>
 </RelativeLayout>
