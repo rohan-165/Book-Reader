@@ -135,6 +135,14 @@ public class HighlightFragment extends Fragment implements HighlightAdapter.High
                 }
             }
         });
+
+        dialog.findViewById(R.id.edit_close_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
     }
 }
 

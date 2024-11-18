@@ -6,10 +6,27 @@
     android:layout_height="match_parent"
     tools:context="com.folioreader.ui.activity.ContentHighlightActivity">
 
+    <LinearLayout
+        android:id="@+id/drawer_top_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/abc_vector_test"
+            android:tint="@color/black"/>
+    </LinearLayout>
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="30dp"
         android:layout_margin="0dp"
         android:alpha="0.8"
         android:background="@color/white"
@@ -18,34 +35,31 @@
         app:contentInsetEnd="0dp"
         app:contentInsetLeft="0dp"
         app:contentInsetRight="0dp"
-        app:contentInsetStart="0dp">
+        app:contentInsetStart="0dp"
+        android:gravity="center"
+        android:layout_below="@+id/drawer_top_layout"
+        >
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="5dp">
 
-            <ImageView
-                android:id="@+id/btn_close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_margin="16dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_close_green_24dp" />
+
 
             <LinearLayout
                 android:id="@+id/layout_content_highlights"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:padding="1.8dp">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/btn_contents"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="5dp"
@@ -55,7 +69,7 @@
                 <TextView
                     android:id="@+id/btn_highlights"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="5dp"
@@ -65,7 +79,7 @@
                 <TextView
                     android:id="@+id/btn_bookmarks"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="5dp"
@@ -74,12 +88,12 @@
 
             </LinearLayout>
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/black" />
+<!--            <View-->
+<!--                android:id="@+id/view"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0.5dp"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:background="@android:color/black" />-->
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 

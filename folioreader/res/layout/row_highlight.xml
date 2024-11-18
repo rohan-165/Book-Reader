@@ -77,21 +77,37 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_note"
+        <LinearLayout
+            android:id="@+id/tv_note_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/highlightNote"
-            android:ellipsize="end"
-            android:text=""
-            android:textColor="@color/day_underline_icon_fill_color_top"
-            android:textSize="14sp" />
+            android:layout_below="@+id/highlightNote">
+
+            <ImageView
+                android:id="@+id/tv_note_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/note" />
+
+            <TextView
+                android:id="@+id/tv_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/highlightNote"
+                android:ellipsize="end"
+                android:text=""
+                android:textColor="@color/day_underline_icon_fill_color_top"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:gravity="center"
-            android:layout_below="@+id/tv_note">
+            android:layout_below="@+id/tv_note_layout">
 
             <TextView
                 android:id="@+id/tv_highlight_date"
@@ -110,6 +126,7 @@
                 android:layout_alignParentRight="true">
 
                <LinearLayout
+                   android:id="@+id/iv_edit_note_layout"
                    android:layout_width="wrap_content"
                    android:gravity="center"
                    android:layout_height="wrap_content">

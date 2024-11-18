@@ -93,27 +93,27 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             container.setBackgroundColor(ContextCompat.getColor(context!!, R.color.white))
         }
 
-        // Initialize switch
-        themeSwitch = view?.findViewById(R.id.theme_switch)!!
-
-        // Set initial state of the switch
-        themeSwitch.isChecked = isNightMode
-
-        // Set up the switch listener
-        themeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if(themeSwitch.isChecked) {
-                isNightMode = false
-                themeSwitch.isChecked = isChecked
-            } else {
-                isNightMode = true
-                themeSwitch.isChecked = isChecked
-            }
-            toggleBlackTheme()
-            setToolBarColor()
-            setAudioPlayerBackground()
-            AppUtil.saveConfig(activity, config)
-            EventBus.getDefault().post(ReloadDataEvent())
-        }
+//        // Initialize switch
+//        themeSwitch = view?.findViewById(R.id.theme_switch)!!
+//
+//        // Set initial state of the switch
+//        themeSwitch.isChecked = isNightMode
+//
+//        // Set up the switch listener
+//        themeSwitch.setOnCheckedChangeListener { _, isChecked ->
+//            if(themeSwitch.isChecked) {
+//                isNightMode = false
+//                themeSwitch.isChecked = isChecked
+//            } else {
+//                isNightMode = true
+//                themeSwitch.isChecked = isChecked
+//            }
+//            toggleBlackTheme()
+//            setToolBarColor()
+//            setAudioPlayerBackground()
+//            AppUtil.saveConfig(activity, config)
+//            EventBus.getDefault().post(ReloadDataEvent())
+//        }
 
 //        if (isNightMode) {
 //            view_config_ib_day_mode.isSelected = false
