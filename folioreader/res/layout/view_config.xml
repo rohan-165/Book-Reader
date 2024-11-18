@@ -12,44 +12,44 @@
     tools:layout_gravity="bottom">
 
     <!-- Row with Theme text and Switch -->
-    <TextView
-        android:id="@+id/theme_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enable Dark Mode"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/theme_subtext"
-        android:layout_marginTop="8dp"
-        android:paddingBottom="10.dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/theme_text"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Enable Dark Mode"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="18sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/theme_subtext"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:paddingBottom="10.dp"/>-->
 
-    <TextView
-        android:id="@+id/theme_subtext"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:paddingEnd="8dp"
-        android:text="Dark Mode uses darker colors and helps to minimize eye strain"
-        android:textColor="@color/gray_text"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/font_text_title"
-        app:layout_constraintEnd_toStartOf="@+id/theme_switch"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <TextView-->
+<!--        android:id="@+id/theme_subtext"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:paddingEnd="8dp"-->
+<!--        android:text="Dark Mode uses darker colors and helps to minimize eye strain"-->
+<!--        android:textColor="@color/gray_text"-->
+<!--        android:textSize="14sp"-->
+<!--        android:textStyle="normal"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/font_text_title"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/theme_switch"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <Switch
-        android:id="@+id/theme_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/font_text_title"
+<!--    <Switch-->
+<!--        android:id="@+id/theme_switch"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:gravity="center"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/font_text_title"-->
 
-        />
+<!--        />-->
 
     <!--    <ImageButton-->
     <!--        android:id="@+id/view_config_ib_day_mode"-->
