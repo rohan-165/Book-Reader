@@ -294,7 +294,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         initActionBar()
         initMediaController()
 
-        val pageCountTextView = findViewById<TextView>(R.id.pageCount)
+//        val pageCountTextView = findViewById<TextView>(R.id.pageCount)
 
         // pageTrackerViewModel
         pageTrackerViewModel = ViewModelProvider(
@@ -302,7 +302,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         )[PageTrackerViewModel::class.java]
 
         pageTrackerViewModel.chapterPage.observe(this, androidx.lifecycle.Observer {
-            pageCountTextView.text = it
+//            pageCountTextView.text = it
         })
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
