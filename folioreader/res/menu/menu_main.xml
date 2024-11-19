@@ -8,7 +8,7 @@
         android:id="@+id/itemBookmark"
         android:icon="@drawable/ic_baseline_bookmark_border_24"
         android:title="@string/menu_item_config"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         tools:showAsAction="always" />
 
 <!--    <item-->
@@ -22,14 +22,14 @@
         android:id="@+id/itemConfig"
         android:icon="@drawable/icon_font"
         android:title="@string/menu_item_config"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         tools:showAsAction="always" />
 
     <item
         android:id="@+id/itemDrawer"
         android:icon="@drawable/ic_drawer"
         android:title="@string/menu_item_config"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         tools:showAsAction="always" />
 
 
