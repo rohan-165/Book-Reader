@@ -255,6 +255,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         // Need to add when vector drawables support library is used.
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
 
@@ -326,6 +327,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         actionBar = supportActionBar
+        actionBar!!.setDisplayShowTitleEnabled(false);
 
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
@@ -363,7 +365,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             ColorDrawable(ContextCompat.getColor(this, R.color.white))
         )
 
-        toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.black))
+//        toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.black))
 
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
@@ -381,7 +383,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 //            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemTts).icon)
         }
 
-        toolbar?.getOverflowIcon()?.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+//        toolbar?.getOverflowIcon()?.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
 
     }
 
@@ -392,7 +394,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             ColorDrawable(ContextCompat.getColor(this, R.color.black))
         )
 
-        toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.night_title_text_color))
+//        toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.night_title_text_color))
 
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
@@ -410,7 +412,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 //            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemTts).icon)
         }
 
-        toolbar?.getOverflowIcon()?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+//        toolbar?.getOverflowIcon()?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
     }
 
@@ -745,7 +747,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         var topDistraction = 0
         if (!distractionFreeMode) {
             topDistraction = statusBarHeight
-            if (actionBar != null) topDistraction += actionBar!!.height
+            if (actionBar != null) topDistraction += 20
+//            if (actionBar != null) topDistraction += actionBar!!.height
         }
 
         return when (unit) {
