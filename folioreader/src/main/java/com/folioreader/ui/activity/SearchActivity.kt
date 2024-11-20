@@ -71,9 +71,9 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
                 oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int
             ) {
 
-                for (i in 0 until toolbar.childCount) {
+                for (i in 0 until search_toolbar.childCount) {
 
-                    val view: View = toolbar.getChildAt(i)
+                    val view: View = search_toolbar.getChildAt(i)
                     val contentDescription: String? = view.contentDescription as String?
                     if (TextUtils.isEmpty(contentDescription))
                         continue
@@ -87,7 +87,7 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
                             navigateBack()
                         }
 
-                        toolbar.removeOnLayoutChangeListener(this)
+                        search_toolbar.removeOnLayoutChangeListener(this)
                         return
                     }
                 }
@@ -112,8 +112,8 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
     private fun init(config: Config) {
         Log.v(LOG_TAG, "-> init")
 
-        setSupportActionBar(toolbar)
-        toolbar.addOnLayoutChangeListener(toolbarOnLayoutChangeListener)
+        setSupportActionBar(search_toolbar)
+        search_toolbar.addOnLayoutChangeListener(toolbarOnLayoutChangeListener)
         actionBar = supportActionBar!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowTitleEnabled(false)
@@ -121,7 +121,7 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
         try {
             val fieldCollapseIcon: Field = Toolbar::class.java.getDeclaredField("mCollapseIcon")
             fieldCollapseIcon.isAccessible = true
-            val collapseIcon: Drawable = fieldCollapseIcon.get(toolbar) as Drawable
+            val collapseIcon: Drawable = fieldCollapseIcon.get(search_toolbar) as Drawable
             UiUtil.setColorIntToDrawable(config.currentThemeColor, collapseIcon)
         } catch (e: Exception) {
             Log.e(LOG_TAG, "-> ", e)
@@ -156,6 +156,7 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
         Log.v(LOG_TAG, "-> onNewIntent")
 
         if (intent.hasExtra(BUNDLE_SEARCH_URI)) {

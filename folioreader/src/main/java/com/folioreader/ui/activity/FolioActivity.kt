@@ -24,8 +24,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
-import android.graphics.Color
-import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -38,8 +36,6 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -323,8 +319,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     }
 
     private fun initActionBar() {
-        appBarLayout = findViewById(R.id.appBarLayout)
-        toolbar = findViewById(R.id.toolbar)
+        appBarLayout = findViewById(R.id.folio_appBarLayout)
+        toolbar = findViewById(R.id.folio_toolbar)
         setSupportActionBar(toolbar)
         actionBar = supportActionBar
         actionBar!!.setDisplayShowTitleEnabled(false);
@@ -373,6 +369,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         val newNavIcon = toolbar!!.navigationIcon
         UiUtil.setColorIntToDrawable(config.themeColor, newNavIcon)
         toolbar!!.navigationIcon = newNavIcon
+
+
 
         // Update toolbar colors
         createdMenu?.let { m ->
