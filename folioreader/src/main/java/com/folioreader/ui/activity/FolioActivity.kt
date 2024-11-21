@@ -332,21 +332,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             setDisplayShowTitleEnabled(false)
         } ?: throw IllegalStateException("ActionBar is not initialized.")
 
-        var font = findViewById<ImageView>(R.id.itemConfig)
-        var bookMark = findViewById<ImageView>(R.id.itemBookmark)
-        var drawer = findViewById<ImageView>(R.id.itemDrawer)
-
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
         val drawable = ContextCompat.getDrawable(this, R.drawable.abc_vector_test)
         UiUtil.setColorIntToDrawable(config.currentThemeColor, drawable!!)
         toolbar!!.navigationIcon = drawable
-
-        // Ensure menu items are visible
-        font?.visibility = View.VISIBLE
-        bookMark?.visibility = View.VISIBLE
-        drawer?.visibility = View.VISIBLE
-
 
 
         if (config.isNightMode) {
