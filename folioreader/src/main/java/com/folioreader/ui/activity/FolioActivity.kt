@@ -39,6 +39,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -326,13 +327,25 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         toolbar = findViewById(R.id.folio_toolbar)
         setSupportActionBar(toolbar)
         actionBar = supportActionBar
-        actionBar!!.setDisplayShowTitleEnabled(false);
+        // Ensure ActionBar exists before using it
+        actionBar?.apply {
+            setDisplayShowTitleEnabled(false)
+        } ?: throw IllegalStateException("ActionBar is not initialized.")
+
+        var font = findViewById<ImageView>(R.id.itemConfig)
+        var bookMark = findViewById<ImageView>(R.id.itemBookmark)
+        var drawer = findViewById<ImageView>(R.id.itemDrawer)
 
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
         val drawable = ContextCompat.getDrawable(this, R.drawable.abc_vector_test)
         UiUtil.setColorIntToDrawable(config.currentThemeColor, drawable!!)
         toolbar!!.navigationIcon = drawable
+
+        // Ensure menu items are visible
+        font?.visibility = View.VISIBLE
+        bookMark?.visibility = View.VISIBLE
+        drawer?.visibility = View.VISIBLE
 
 
 
@@ -385,8 +398,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemDrawer).icon)
 //            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemTts).icon)
         }
-
-        createdMenu?.hasVisibleItems()
 
 //        toolbar?.getOverflowIcon()?.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
 
