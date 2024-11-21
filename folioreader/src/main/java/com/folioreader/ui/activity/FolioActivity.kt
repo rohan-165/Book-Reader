@@ -16,6 +16,7 @@
 package com.folioreader.ui.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
 import android.app.Dialog
@@ -24,8 +25,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -331,6 +334,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         UiUtil.setColorIntToDrawable(config.currentThemeColor, drawable!!)
         toolbar!!.navigationIcon = drawable
 
+
+
         if (config.isNightMode) {
             setNightMode()
         } else {
@@ -381,6 +386,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 //            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemTts).icon)
         }
 
+        createdMenu?.hasVisibleItems()
+
 //        toolbar?.getOverflowIcon()?.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
 
     }
@@ -426,6 +433,20 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             menuInflater.inflate(R.menu.menu_main, menu)
 
             val config = AppUtil.getSavedConfig(applicationContext)!!
+            // Force visibility of all menu items in ActionBar
+            for (i in 0 until menu.size()) {
+                val menuItem = menu.getItem(i)
+
+                // Force menu item to always be visible on the toolbar
+                menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+
+                // Change icon color for all menu items
+                val drawable: Drawable? = menuItem.icon
+                if (drawable != null) {
+                    drawable.mutate()
+                    drawable.setColorFilter(config.currentThemeColor, PorterDuff.Mode.SRC_ATOP)
+                }
+            }
 
 //            toolbar?.getOverflowIcon()?.setColorFilter(config.currentThemeColor, PorterDuff.Mode.SRC_ATOP);
 //            for (i in 0 until menu.size()) {
