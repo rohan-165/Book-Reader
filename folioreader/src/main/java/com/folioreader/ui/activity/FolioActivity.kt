@@ -859,9 +859,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun getTopDistraction(unit: DisplayUnit): Int {
 
         var topDistraction = 0
-        if (distractionFreeMode) {
-            topDistraction = 56
-            if (actionBar != null) topDistraction += 5
+        if (!distractionFreeMode) {
+//            topDistraction = statusBarHeight
+//            if (actionBar != null) topDistraction += 5
 //            if (actionBar != null) topDistraction += actionBar!!.height
         }
 
@@ -961,7 +961,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         Log.v(LOG_TAG, "-> distractionFreeMode = $distractionFreeMode")
 
         if (mainactionBar != null) {
-            if (!distractionFreeMode) {
+            if (distractionFreeMode) {
 //                actionBar?.hide()
                 mainactionBar.visibility = View.GONE
             } else {
@@ -973,7 +973,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun toggleSystemUI() {
 
-        if (!distractionFreeMode) {
+        if (distractionFreeMode) {
             showSystemUI()
         } else {
             hideSystemUI()
@@ -989,7 +989,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 (View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
         } else {
             window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            if (appBarLayout != null) appBarLayout!!.setTopMargin(60)
+            if (appBarLayout != null) appBarLayout!!.setTopMargin(statusBarHeight)
             onSystemUiVisibilityChange(View.SYSTEM_UI_FLAG_VISIBLE)
         }
     }

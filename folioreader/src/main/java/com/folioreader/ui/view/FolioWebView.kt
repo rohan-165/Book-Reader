@@ -270,7 +270,8 @@ class FolioWebView : WebView {
 
         uiHandler = Handler()
         displayMetrics = resources.displayMetrics
-        density = displayMetrics!!.density
+        density = displayMetrics?.density ?: 0f
+
 
         gestureDetector = if (folioActivityCallback.direction == Config.Direction.HORIZONTAL) {
             GestureDetectorCompat(context, HorizontalGestureListener())
@@ -497,7 +498,7 @@ class FolioWebView : WebView {
     }
 
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
-        if (mScrollListener != null) mScrollListener!!.onScrollChange(t)
+        if (mScrollListener != null) mScrollListener?.onScrollChange(t)
         super.onScrollChanged(l, t, oldl, oldt)
 
         if (lastScrollType == LastScrollType.USER) {

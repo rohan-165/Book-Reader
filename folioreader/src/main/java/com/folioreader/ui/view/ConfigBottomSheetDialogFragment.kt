@@ -66,7 +66,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             val dialog = dialog as BottomSheetDialog
             val bottomSheet =
                 dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout?
-            val behavior = BottomSheetBehavior.from(bottomSheet!!)
+            val behavior = BottomSheetBehavior.from(bottomSheet)
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
             behavior.peekHeight = 0
         }
