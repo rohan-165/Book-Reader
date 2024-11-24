@@ -17,23 +17,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.folioreader.ui.view.FolioAppBarLayout
-        android:id="@+id/folio_appBarLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <com.folioreader.ui.view.FolioAppBarLayout-->
+<!--        android:id="@+id/folio_appBarLayout"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/folio_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:contentInsetStartWithNavigation="0dp" />
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/folio_toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?android:attr/actionBarSize"-->
+<!--            app:contentInsetLeft="0dp"-->
+<!--            app:contentInsetStart="0dp"-->
+<!--            app:contentInsetStartWithNavigation="0dp" />-->
 
-    </com.folioreader.ui.view.FolioAppBarLayout>
+<!--    </com.folioreader.ui.view.FolioAppBarLayout>-->
 
 <!--    <TextView-->
 <!--        android:id="@+id/pageCount"-->
@@ -52,19 +52,81 @@
 <!--        app:layout_constraintEnd_toEndOf="@+id/folioPageViewPager"-->
 <!--        tools:text="1" />-->
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="56dp"
         android:background="@color/white"
-        android:tint="@color/black"
-        android:backgroundTint="@color/white"
-        android:padding="10dp"
-        android:contentDescription="Floating Action Button"
-        app:srcCompat="@drawable/ic_baseline_bookmark_border_24" />
+        tools:ignore="MissingConstraints">
+
+        <!-- ImageView aligned to the left -->
+        <ImageView
+            android:id="@+id/main_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/abc_vector_test"
+            android:tint="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:contentDescription="Image" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_drawer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:tint="@color/black"
+            app:backgroundTint="@color/white"
+            android:padding="10dp"
+            android:contentDescription="Floating Action Button"
+            app:srcCompat="@drawable/ic_drawer"
+            app:elevation="0dp"
+            app:borderWidth="0dp"
+            app:useCompatPadding="false" />
+
+        <!-- Space to push FABs to the right -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Floating Action Buttons aligned to the right -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:tint="@color/black"
+            app:backgroundTint="@color/white"
+            android:padding="10dp"
+            android:contentDescription="Floating Action Button"
+            app:srcCompat="@drawable/ic_baseline_bookmark_border_24"
+            app:elevation="0dp"
+            app:borderWidth="0dp"
+            app:useCompatPadding="false" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:tint="@color/black"
+            app:backgroundTint="@color/white"
+            android:padding="10dp"
+            android:contentDescription="Floating Action Button"
+            app:srcCompat="@drawable/icon_font"
+            app:elevation="0dp"
+            app:borderWidth="0dp"
+            app:useCompatPadding="false" />
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

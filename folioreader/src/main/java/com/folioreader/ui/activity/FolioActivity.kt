@@ -42,6 +42,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -88,7 +89,6 @@ import com.folioreader.util.UiUtil
 import com.folioreader.viewmodels.PageTrackerViewModel
 import com.folioreader.viewmodels.PageTrackerViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.folio_activity.fab
 import org.greenrobot.eventbus.EventBus
 import org.readium.r2.shared.Link
 import org.readium.r2.shared.Publication
@@ -310,17 +310,12 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             mEpubFilePath = intent.extras!!.getString(INTENT_EPUB_SOURCE_PATH)
         }
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        initActionBar()
+//        initActionBar()
+        initFloatingactionButton()
         initMediaController()
 
 
-        // Initialize the FloatingActionButton
-       val fab = findViewById<FloatingActionButton>(R.id.fab)
 
-        // Set up a click listener for the FAB
-        fab.setOnClickListener {
-            Toast.makeText(this, "Floating Action Button Clicked!", Toast.LENGTH_SHORT).show()
-        }
 
 //        val pageCountTextView = findViewById<TextView>(R.id.pageCount)
 
@@ -349,54 +344,125 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         }
     }
 
-    private fun initActionBar() {
-        appBarLayout = findViewById(R.id.folio_appBarLayout)
-        toolbar = findViewById(R.id.folio_toolbar)
-        setSupportActionBar(toolbar)
-        actionBar = supportActionBar
-        // Ensure ActionBar exists before using it
-        actionBar?.apply {
-            setDisplayShowTitleEnabled(false)
-        } ?: throw IllegalStateException("ActionBar is not initialized.")
+    private  fun initFloatingactionButton() {
+        // Initialize the FloatingActionButton
+        val mainBackButton = findViewById<ImageView>(R.id.main_back_button)
+        val bookMark = findViewById<FloatingActionButton>(R.id.fab_bookmark)
+        val font = findViewById<FloatingActionButton>(R.id.fab_font)
+        val drawer = findViewById<FloatingActionButton>(R.id.fab_drawer)
 
-        val config = AppUtil.getSavedConfig(applicationContext)!!
+        mainBackButton.setOnClickListener {
+            finish()
+        }
 
-        val drawable = ContextCompat.getDrawable(this, R.drawable.abc_vector_test)
-        UiUtil.setColorIntToDrawable(config.currentThemeColor, drawable!!)
-        toolbar!!.navigationIcon = drawable
+        // Set up a click listener for the FAB
+        bookMark.setOnClickListener {
+            val readLocator = currentFragment!!.getLastReadLocator()
+                Log.v(LOG_TAG, "-> onOptionsItemSelected 'if' -> bookmark")
 
+                bookmarkReadLocator = readLocator
+                val localBroadcastManager = LocalBroadcastManager.getInstance(this)
+                val intent = Intent(FolioReader.ACTION_SAVE_READ_LOCATOR)
+                intent.putExtra(FolioReader.EXTRA_READ_LOCATOR, readLocator as Parcelable?)
+                localBroadcastManager.sendBroadcast(intent)
+                val dialog = Dialog(this, R.style.DialogCustomTheme)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.dialog_bookmark)
+                dialog.show()
+                dialog.setCanceledOnTouchOutside(true)
+                dialog.setOnCancelListener {
+                    Toast.makeText(
+                        this, "please enter a Bookmark name and then press Save", Toast.LENGTH_SHORT
+                    ).show()
+                }
+                dialog.findViewById<View>(R.id.btn_save_bookmark).setOnClickListener {
+                    val name =
+                        (dialog.findViewById<View>(R.id.bookmark_name) as EditText).text.toString()
+                    if (!TextUtils.isEmpty(name)) {
+                        val simpleDateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+                        val id = BookmarkTable(this).insertBookmark(
+                            mBookId,
+                            simpleDateFormat.format(Date()),
+                            name,
+                            bookmarkReadLocator!!.toJson().toString()
+                        )
+                        Toast.makeText(
+                            this, getString(R.string.book_mark_success), Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "please Enter a Bookmark name and then press Save",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    dialog.dismiss()
+                }
 
-        // Get the menu from the toolbar
-        val menu = toolbar!!.menu
+                dialog.findViewById<View>(R.id.close_button).setOnClickListener {
+                    dialog.dismiss()
+                }
+        }
 
+        font.setOnClickListener {
+            Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + "Font")
+                showConfigBottomSheetDialogFragment()
+        }
 
-
-
-//        if (config.isNightMode) {
-//            setNightMode()
-//        } else {
-//            setDayMode()
-//        }
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            val color: Int = if (config.isNightMode) {
-//                ContextCompat.getColor(this, R.color.black)
-//            } else {
-//                val attrs = intArrayOf(android.R.attr.navigationBarColor)
-//                val typedArray = theme.obtainStyledAttributes(attrs)
-//                typedArray.getColor(0, ContextCompat.getColor(this, R.color.white))
-//            }
-//            window.navigationBarColor = color
-//        }
-//
-//        if (Build.VERSION.SDK_INT < 16) {
-//            // Fix for appBarLayout.fitSystemWindows() not being called on API < 16
-//            appBarLayout!!.setTopMargin(statusBarHeight)
-//        }
-
-        // Invalidate and refresh menu to ensure it updates
-        invalidateOptionsMenu()
+        drawer.setOnClickListener {
+            Log.v(LOG_TAG, "-> onOptionsItemSelected -> drawer")
+            startContentHighlightActivity()
+        }
     }
+
+//    private fun initActionBar() {
+//        appBarLayout = findViewById(R.id.folio_appBarLayout)
+//        toolbar = findViewById(R.id.folio_toolbar)
+//        setSupportActionBar(toolbar)
+//        actionBar = supportActionBar
+//        // Ensure ActionBar exists before using it
+//        actionBar?.apply {
+//            setDisplayShowTitleEnabled(false)
+//        } ?: throw IllegalStateException("ActionBar is not initialized.")
+//
+//        val config = AppUtil.getSavedConfig(applicationContext)!!
+//
+//        val drawable = ContextCompat.getDrawable(this, R.drawable.abc_vector_test)
+//        UiUtil.setColorIntToDrawable(config.currentThemeColor, drawable!!)
+//        toolbar!!.navigationIcon = drawable
+//
+//
+//        // Get the menu from the toolbar
+//        val menu = toolbar!!.menu
+//
+//
+//
+//
+////        if (config.isNightMode) {
+////            setNightMode()
+////        } else {
+////            setDayMode()
+////        }
+////
+////        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+////            val color: Int = if (config.isNightMode) {
+////                ContextCompat.getColor(this, R.color.black)
+////            } else {
+////                val attrs = intArrayOf(android.R.attr.navigationBarColor)
+////                val typedArray = theme.obtainStyledAttributes(attrs)
+////                typedArray.getColor(0, ContextCompat.getColor(this, R.color.white))
+////            }
+////            window.navigationBarColor = color
+////        }
+////
+////        if (Build.VERSION.SDK_INT < 16) {
+////            // Fix for appBarLayout.fitSystemWindows() not being called on API < 16
+////            appBarLayout!!.setTopMargin(statusBarHeight)
+////        }
+//
+//        // Invalidate and refresh menu to ensure it updates
+//        invalidateOptionsMenu()
+//    }
 
     override fun setDayMode() {
         Log.v(LOG_TAG, "-> setDayMode")
@@ -470,29 +536,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             menuInflater.inflate(R.menu.menu_main, menu)
 
             val config = AppUtil.getSavedConfig(applicationContext)!!
-            // Force visibility of all menu items in ActionBar
-            for (i in 0 until menu.size()) {
-                val menuItem = menu.getItem(i)
-
-                // Force menu item to always be visible on the toolbar
-                menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
-
-                // Change icon color for all menu items
-                val drawable: Drawable? = menuItem.icon
-                if (drawable != null) {
-                    drawable.mutate()
-                    drawable.setColorFilter(config.currentThemeColor, PorterDuff.Mode.SRC_ATOP)
-                }
-            }
-            // Add a "Search" item to the menu
-            val searchItem = menu.add(0, 1, 0, "Search")
-            searchItem.setIcon(R.drawable.ic_search) // Replace with your icon
-            searchItem.setShowAsAction(android.view.MenuItem.SHOW_AS_ACTION_ALWAYS)
-
-            // Add a "Settings" item to the menu
-            val settingsItem = menu.add(0, 2, 1, "Settings")
-            settingsItem.setIcon(R.drawable.ic_baseline_bookmark_border_24) // Replace with your icon
-            settingsItem.setShowAsAction(android.view.MenuItem.SHOW_AS_ACTION_ALWAYS)
 
 
 //            toolbar?.getOverflowIcon()?.setColorFilter(config.currentThemeColor, PorterDuff.Mode.SRC_ATOP);
