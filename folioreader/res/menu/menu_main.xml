@@ -2,18 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     tools:context="com.folioreader.ui.activity.FolioActivity">
 
-    <item
-        android:id="@+id/itemBookmark"
-        android:icon="@drawable/ic_baseline_bookmark_border_24"
-        android:title="@string/menu_item_config"
-        app:actionViewClass="com.folioreader.ui.activity.FolioActivity"
-        app:showAsAction="always"
-        tools:showAsAction="always"
-        tools:ignore="Instantiatable" />
+<!--    <item-->
+<!--        android:id="@+id/itemBookmark"-->
+<!--        android:icon="@drawable/ic_baseline_bookmark_border_24"-->
+<!--        android:title="@string/menu_item_config"-->
+<!--        app:showAsAction="always"-->
+<!--        tools:showAsAction="always"-->
+<!--        android:onClick="goBackButtonClicked" />-->
 
 <!--    <item-->
 <!--        android:id="@+id/itemSearch"-->
@@ -22,21 +19,19 @@
 <!--        app:showAsAction="ifRoom"-->
 <!--        tools:showAsAction="always" />-->
 
-    <item
-        android:id="@+id/itemConfig"
-        android:icon="@drawable/icon_font"
-        android:title="@string/menu_item_config"
-        app:actionViewClass="com.folioreader.ui.activity.FolioActivity"
-        app:showAsAction="always"
-        tools:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/itemConfig"-->
+<!--        android:icon="@drawable/icon_font"-->
+<!--        android:title="@string/menu_item_config"-->
+<!--        app:showAsAction="always"-->
+<!--        tools:showAsAction="always" />-->
 
-    <item
-        android:id="@+id/itemDrawer"
-        android:icon="@drawable/ic_drawer"
-        android:title="@string/menu_item_config"
-        app:actionViewClass="com.folioreader.ui.activity.FolioActivity"
-        app:showAsAction="always"
-        tools:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/itemDrawer"-->
+<!--        android:icon="@drawable/ic_drawer"-->
+<!--        android:title="@string/menu_item_config"-->
+<!--        app:showAsAction="always"-->
+<!--        tools:showAsAction="always" />-->
 
 
 <!--    <item-->
