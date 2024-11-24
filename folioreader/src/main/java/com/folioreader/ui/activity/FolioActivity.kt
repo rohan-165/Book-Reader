@@ -110,11 +110,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private var bookFileName: String? = null
 
     private var mFolioPageViewPager: DirectionalViewpager? = null
-    private var actionBar: ActionBar? = null
+//    private var actionBar: ActionBar? = null
     private lateinit var mainactionBar: LinearLayout
     private var appBarLayout: FolioAppBarLayout? = null
-    private var toolbar: Toolbar? = null
-    private var createdMenu: Menu? = null
+//    private var toolbar: Toolbar? = null
+//    private var createdMenu: Menu? = null
     private var distractionFreeMode: Boolean = false
     private var handler: Handler? = null
 
@@ -348,9 +348,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     }
 
     private  fun initFloatingactionButton() {
+        appBarLayout = findViewById(R.id.folio_appBarLayout)
         mainactionBar = findViewById<LinearLayout>(R.id.main_app_bar)
         // Initialize the FloatingActionButton
-        val appBarTitle = findViewById<TextView>(R.id.app_bar_title)
         val mainBackButton = findViewById<ImageView>(R.id.main_back_button)
         val bookMark = findViewById<FloatingActionButton>(R.id.fab_bookmark)
         val font = findViewById<FloatingActionButton>(R.id.fab_font)
@@ -481,20 +481,20 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
         // Update drawer color
-        val newNavIcon = toolbar?.navigationIcon
-        UiUtil.setColorIntToDrawable(config.themeColor, newNavIcon)
-        toolbar?.navigationIcon = newNavIcon
+//        val newNavIcon = toolbar?.navigationIcon
+//        UiUtil.setColorIntToDrawable(config.themeColor, newNavIcon)
+//        toolbar?.navigationIcon = newNavIcon
 
 
 
         // Update toolbar colors
-        createdMenu?.let { m ->
+//        createdMenu?.let { m ->
 //            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemBookmark).icon)
 //            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemSearch).icon)
 //            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemConfig).icon)
 //            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemDrawer).icon)
 //            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemTts).icon)
-        }
+//        }
 
 //        toolbar?.getOverflowIcon()?.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
 
@@ -512,18 +512,18 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
         // Update drawer color
-        val newNavIcon = toolbar?.navigationIcon
-        UiUtil.setColorIntToDrawable(config.nightThemeColor, newNavIcon)
-        toolbar?.navigationIcon = newNavIcon
+//        val newNavIcon = toolbar?.navigationIcon
+//        UiUtil.setColorIntToDrawable(config.nightThemeColor, newNavIcon)
+//        toolbar?.navigationIcon = newNavIcon
 
         // Update toolbar colors
-        createdMenu?.let { m ->
+//        createdMenu?.let { m ->
 //            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemBookmark).icon)
 //            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemSearch).icon)
 //            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemConfig).icon)
 //            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemDrawer).icon)
 //            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemTts).icon)
-        }
+//        }
 
 //        toolbar?.getOverflowIcon()?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
@@ -537,7 +537,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         try {
-            createdMenu = menu
+//            createdMenu = menu
             menuInflater.inflate(R.menu.menu_main, menu)
 
             val config = AppUtil.getSavedConfig(applicationContext)!!
@@ -887,7 +887,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun getBottomDistraction(unit: DisplayUnit): Int {
 
         var bottomDistraction = 0
-        if (distractionFreeMode) bottomDistraction = appBarLayout!!.navigationBarHeight
+        if(appBarLayout != null) {
+            if (distractionFreeMode) bottomDistraction = appBarLayout!!.navigationBarHeight
+        }
 
         return when (unit) {
             DisplayUnit.PX -> bottomDistraction
