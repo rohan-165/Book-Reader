@@ -87,6 +87,8 @@ import com.folioreader.util.FileUtil
 import com.folioreader.util.UiUtil
 import com.folioreader.viewmodels.PageTrackerViewModel
 import com.folioreader.viewmodels.PageTrackerViewModelFactory
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.folio_activity.fab
 import org.greenrobot.eventbus.EventBus
 import org.readium.r2.shared.Link
 import org.readium.r2.shared.Publication
@@ -310,6 +312,15 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         initActionBar()
         initMediaController()
+
+
+        // Initialize the FloatingActionButton
+       val fab = findViewById<FloatingActionButton>(R.id.fab)
+
+        // Set up a click listener for the FAB
+        fab.setOnClickListener {
+            Toast.makeText(this, "Floating Action Button Clicked!", Toast.LENGTH_SHORT).show()
+        }
 
 //        val pageCountTextView = findViewById<TextView>(R.id.pageCount)
 
