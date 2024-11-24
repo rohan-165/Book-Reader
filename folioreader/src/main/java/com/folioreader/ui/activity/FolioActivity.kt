@@ -963,10 +963,13 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         if (mainactionBar != null) {
             if (distractionFreeMode) {
 //                actionBar?.hide()
-                mainactionBar.visibility = View.GONE
-            } else {
-//                actionBar?.show()
+                Log.v(LOG_TAG, "-> onSystemUiVisibilityChange -> distractionFreeMode = $distractionFreeMode ,!! View.GONE -> ${View.GONE}")
                 mainactionBar.visibility = View.VISIBLE
+            } else {
+                Log.v(LOG_TAG, "-> onSystemUiVisibilityChange -> visibility = $visibility")
+//                actionBar?.show()
+                Log.v(LOG_TAG, "-> onSystemUiVisibilityChange -> distractionFreeMode = $distractionFreeMode ,!! View.VISIBLE -> ${View.VISIBLE}")
+                mainactionBar.visibility = View.GONE
             }
         }
     }
