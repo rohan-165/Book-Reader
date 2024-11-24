@@ -469,7 +469,12 @@ class FolioPageFragment(private var pageViewModel: PageTrackerViewModel) : Fragm
 
                 } else if (isCurrentFragment) {
                     val cfi = lastReadLocator!!.locations.cfi
-                    mWebview!!.loadUrl(String.format(getString(R.string.callScrollToCfi), cfi))
+                    if (cfi != null) {
+                        mWebview!!.loadUrl(String.format(getString(R.string.callScrollToCfi), cfi))
+                    } else {
+                        // Handle the case where lastReadLocator is null
+                        Log.e(LOG_TAG, "lastReadLocator is null, cannot scroll to CFI")
+                    }
 
                 } else {
                     if (spineIndex == mActivityCallback!!.currentChapterIndex - 1) {

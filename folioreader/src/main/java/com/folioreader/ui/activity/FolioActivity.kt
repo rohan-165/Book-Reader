@@ -43,6 +43,8 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -109,6 +111,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     private var mFolioPageViewPager: DirectionalViewpager? = null
     private var actionBar: ActionBar? = null
+    private lateinit var mainactionBar: LinearLayout
     private var appBarLayout: FolioAppBarLayout? = null
     private var toolbar: Toolbar? = null
     private var createdMenu: Menu? = null
@@ -345,7 +348,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     }
 
     private  fun initFloatingactionButton() {
+        mainactionBar = findViewById<LinearLayout>(R.id.main_app_bar)
         // Initialize the FloatingActionButton
+        val appBarTitle = findViewById<TextView>(R.id.app_bar_title)
         val mainBackButton = findViewById<ImageView>(R.id.main_back_button)
         val bookMark = findViewById<FloatingActionButton>(R.id.fab_bookmark)
         val font = findViewById<FloatingActionButton>(R.id.fab_font)
@@ -357,7 +362,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         // Set up a click listener for the FAB
         bookMark.setOnClickListener {
-            val readLocator = currentFragment!!.getLastReadLocator()
+            val readLocator = currentFragment?.getLastReadLocator()
                 Log.v(LOG_TAG, "-> onOptionsItemSelected 'if' -> bookmark")
 
                 bookmarkReadLocator = readLocator
@@ -384,7 +389,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                             mBookId,
                             simpleDateFormat.format(Date()),
                             name,
-                            bookmarkReadLocator!!.toJson().toString()
+                            bookmarkReadLocator?.toJson().toString()
                         )
                         Toast.makeText(
                             this, getString(R.string.book_mark_success), Toast.LENGTH_SHORT
@@ -467,7 +472,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun setDayMode() {
         Log.v(LOG_TAG, "-> setDayMode")
 
-        actionBar!!.setBackgroundDrawable(
+        actionBar?.setBackgroundDrawable(
             ColorDrawable(ContextCompat.getColor(this, R.color.white))
         )
 
@@ -476,9 +481,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
         // Update drawer color
-        val newNavIcon = toolbar!!.navigationIcon
+        val newNavIcon = toolbar?.navigationIcon
         UiUtil.setColorIntToDrawable(config.themeColor, newNavIcon)
-        toolbar!!.navigationIcon = newNavIcon
+        toolbar?.navigationIcon = newNavIcon
 
 
 
@@ -498,7 +503,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun setNightMode() {
         Log.v(LOG_TAG, "-> setNightMode")
 
-        actionBar!!.setBackgroundDrawable(
+        actionBar?.setBackgroundDrawable(
             ColorDrawable(ContextCompat.getColor(this, R.color.black))
         )
 
@@ -507,9 +512,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
         // Update drawer color
-        val newNavIcon = toolbar!!.navigationIcon
+        val newNavIcon = toolbar?.navigationIcon
         UiUtil.setColorIntToDrawable(config.nightThemeColor, newNavIcon)
-        toolbar!!.navigationIcon = newNavIcon
+        toolbar?.navigationIcon = newNavIcon
 
         // Update toolbar colors
         createdMenu?.let { m ->
@@ -663,14 +668,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 //                showMediaController()
 //                return true
 //            }
-            1 -> {
-                Toast.makeText(this, "Search clicked", Toast.LENGTH_SHORT).show()
-                return  true
-            }
-            2 -> {
-                Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
-                return true
-            }
             else -> return super.onOptionsItemSelected(item)
         }
 
@@ -680,9 +677,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         val intent = Intent(this@FolioActivity, ContentHighlightActivity::class.java)
 
-        intent.putExtra(Constants.PUBLICATION, pubBox!!.publication)
+        intent.putExtra(Constants.PUBLICATION, pubBox?.publication)
         try {
-            intent.putExtra(CHAPTER_SELECTED, spine!![currentChapterIndex].href)
+            intent.putExtra(CHAPTER_SELECTED, spine!![currentChapterIndex]?.href)
         } catch (e: NullPointerException) {
             Log.w(LOG_TAG, "-> ", e)
             intent.putExtra(CHAPTER_SELECTED, "")
@@ -705,7 +702,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     }
 
     private fun showMediaController() {
-        mediaControllerFragment!!.show(supportFragmentManager)
+        mediaControllerFragment?.show(supportFragmentManager)
     }
 
     private fun setupBook() {
@@ -724,7 +721,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private fun initBook() {
         Log.v(LOG_TAG, "-> initBook")
 
-        bookFileName = FileUtil.getEpubFilename(this, mEpubSourceType!!, mEpubFilePath, mEpubRawId)
+        bookFileName = FileUtil.getEpubFilename(this, mEpubSourceType, mEpubFilePath, mEpubRawId)
         Log.v(LOG_TAG, "-> bookFileName $bookFileName")
 
         val path = FileUtil.saveEpubFileAndLoadLazyBook(
@@ -744,11 +741,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         pubBox = when (extension) {
             Publication.EXTENSION.EPUB -> {
                 val epubParser = EpubParser()
-                epubParser.parse(path!!, "")
+                epubParser.parse(path, "")
             }
             Publication.EXTENSION.CBZ -> {
                 val cbzParser = CbzParser()
-                cbzParser.parse(path!!, "")
+                cbzParser.parse(path, "")
             }
             else -> {
                 null
@@ -759,11 +756,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         portNumber = AppUtil.getAvailablePortNumber(portNumber)
 
         r2StreamerServer = Server(portNumber)
-        r2StreamerServer!!.addEpub(
+        r2StreamerServer?.addEpub(
             pubBox!!.publication, pubBox!!.container, "/" + bookFileName!!, null
         )
 
-        r2StreamerServer!!.start()
+        r2StreamerServer?.start()
 
         FolioReader.initRetrofit(streamerUrl)
     }
@@ -773,23 +770,23 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     }
 
     private fun onBookInitSuccess() {
-        val publication = pubBox!!.publication
-        spine = publication.readingOrder
-        title = publication.metadata.title
+        val publication = pubBox?.publication
+        spine = publication?.readingOrder
+        title = publication?.metadata?.title
 
         if (mBookId == null) {
-            mBookId = publication.metadata.identifier.ifEmpty {
+            mBookId = publication?.metadata?.identifier?.ifEmpty {
                 if (publication.metadata.title.isNotEmpty()) {
                     publication.metadata.title.hashCode().toString()
                 } else {
-                    bookFileName!!.hashCode().toString()
+                    bookFileName?.hashCode().toString()
                 }
             }
         }
 
         // searchUri currently not in use as it's uri is constructed through Retrofit,
         // code kept just in case if required in future.
-        for (link in publication.links) {
+        for (link in publication!!.links) {
             if (link.rel.contains("search")) {
                 searchUri = Uri.parse("http://" + link.href!!)
                 break
@@ -851,8 +848,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         super.onPostCreate(savedInstanceState)
         Log.v(LOG_TAG, "-> onPostCreate")
 
-        if (distractionFreeMode) {
-            handler!!.post { hideSystemUI() }
+        if (!distractionFreeMode) {
+            handler?.post { hideSystemUI() }
         }
     }
 
@@ -862,9 +859,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun getTopDistraction(unit: DisplayUnit): Int {
 
         var topDistraction = 0
-        if (!distractionFreeMode) {
-            topDistraction = statusBarHeight
-            if (actionBar != null) topDistraction += 20
+        if (distractionFreeMode) {
+            topDistraction = 56
+            if (actionBar != null) topDistraction += 5
 //            if (actionBar != null) topDistraction += actionBar!!.height
         }
 
@@ -890,7 +887,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun getBottomDistraction(unit: DisplayUnit): Int {
 
         var bottomDistraction = 0
-        if (!distractionFreeMode) bottomDistraction = appBarLayout!!.navigationBarHeight
+        if (distractionFreeMode) bottomDistraction = appBarLayout!!.navigationBarHeight
 
         return when (unit) {
             DisplayUnit.PX -> bottomDistraction
@@ -914,10 +911,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private fun computeViewportRect(): Rect {
         //Log.v(LOG_TAG, "-> computeViewportRect");
 
-        val viewportRect = Rect(appBarLayout!!.insets)
-        if (distractionFreeMode) viewportRect.left = 0
+        val viewportRect = Rect(appBarLayout?.insets)
+        if (!distractionFreeMode) viewportRect.left = 0
         viewportRect.top = getTopDistraction(DisplayUnit.PX)
-        if (distractionFreeMode) {
+        if (!distractionFreeMode) {
             viewportRect.right = displayMetrics!!.widthPixels
         } else {
             viewportRect.right = displayMetrics!!.widthPixels - viewportRect.right
@@ -963,18 +960,20 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         distractionFreeMode = visibility != View.SYSTEM_UI_FLAG_VISIBLE
         Log.v(LOG_TAG, "-> distractionFreeMode = $distractionFreeMode")
 
-        if (actionBar != null) {
-            if (distractionFreeMode) {
-                actionBar!!.hide()
+        if (mainactionBar != null) {
+            if (!distractionFreeMode) {
+//                actionBar?.hide()
+                mainactionBar.visibility = View.GONE
             } else {
-                actionBar!!.show()
+//                actionBar?.show()
+                mainactionBar.visibility = View.VISIBLE
             }
         }
     }
 
     override fun toggleSystemUI() {
 
-        if (distractionFreeMode) {
+        if (!distractionFreeMode) {
             showSystemUI()
         } else {
             hideSystemUI()
@@ -990,7 +989,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 (View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
         } else {
             window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            if (appBarLayout != null) appBarLayout!!.setTopMargin(statusBarHeight)
+            if (appBarLayout != null) appBarLayout!!.setTopMargin(60)
             onSystemUiVisibilityChange(View.SYSTEM_UI_FLAG_VISIBLE)
         }
     }
