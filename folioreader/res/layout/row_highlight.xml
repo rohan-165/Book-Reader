@@ -35,7 +35,6 @@
                 android:maxLines="3"
                 android:minLines="1"
                 android:elegantTextHeight="true"
-                android:fontFamily="@fonts/shreenath"
                 android:textColor="@color/day_underline_icon_fill_color_top"
                 android:textSize="17sp" />
 
