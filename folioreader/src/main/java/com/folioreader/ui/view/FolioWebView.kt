@@ -83,7 +83,7 @@ class FolioWebView : WebView {
     private var density: Float = 0.toFloat()
     private var mScrollListener: ScrollListener? = null
     private var mSeekBarListener: SeekBarListener? = null
-    private lateinit var gestureDetector: GestureDetectorCompat
+//    private lateinit var gestureDetector: GestureDetectorCompat
     private var eventActionDown: MotionEvent? = null
     private var pageWidthCssDp: Int = 0
     private var pageWidthCssPixels: Float = 0.toFloat()
@@ -273,13 +273,13 @@ class FolioWebView : WebView {
         density = displayMetrics?.density ?: 0f
 
 
-        gestureDetector = if (folioActivityCallback.direction == Config.Direction.HORIZONTAL) {
-            GestureDetectorCompat(context, HorizontalGestureListener())
-        } else {
-            GestureDetectorCompat(context, VerticalGestureListener())
-        }
+//        gestureDetector = if (folioActivityCallback.direction == Config.Direction.HORIZONTAL) {
+//            GestureDetectorCompat(context, HorizontalGestureListener())
+//        } else {
+//            GestureDetectorCompat(context, VerticalGestureListener())
+//        }
 
-        initViewTextSelection()
+//        initViewTextSelection()
     }
 
     fun initViewTextSelection() {
@@ -448,7 +448,7 @@ class FolioWebView : WebView {
 
     private fun computeVerticalScroll(event: MotionEvent): Boolean {
 
-        gestureDetector.onTouchEvent(event)
+//        gestureDetector.onTouchEvent(event)
         return super.onTouchEvent(event)
     }
 
@@ -460,8 +460,9 @@ class FolioWebView : WebView {
             return super.onTouchEvent(event)
 
         webViewPager.dispatchTouchEvent(event)
-        val gestureReturn = gestureDetector.onTouchEvent(event)
-        return if (gestureReturn) true else super.onTouchEvent(event)
+//        val gestureReturn = gestureDetector.onTouchEvent(event)
+//        return if (gestureReturn) true else super.onTouchEvent(event)
+        return  super.onTouchEvent(event)
     }
 
     fun getScrollXDpForPage(page: Int): Int {

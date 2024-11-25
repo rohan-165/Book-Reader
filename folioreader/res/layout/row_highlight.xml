@@ -3,48 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/swipe_linear_layout"-->
-<!--        android:layout_width="160dp"-->
-<!--        android:layout_height="0dp">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/iv_edit_note"-->
-<!--            android:layout_width="80dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="#8A2BE2"-->
-<!--            android:paddingLeft="25dp"-->
-<!--            android:paddingRight="25dp"-->
-<!--            android:src="@drawable/edit_note" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/iv_delete"-->
-<!--            android:layout_width="80dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="#FF3B30"-->
-<!--            android:paddingLeft="25dp"-->
-<!--            android:paddingRight="25dp"-->
-<!--            android:src="@drawable/trash" />-->
-<!--    </LinearLayout>-->
-
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="8dp">
-
-<!--        <com.folioreader.ui.view.UnderlinedTextView-->
-<!--            android:id="@+id/utv_highlight_content"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="8dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:ellipsize="end"-->
-<!--            android:maxLines="3"-->
-<!--            android:minLines="1"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="17sp" />-->
 
         <!-- Horizontal LinearLayout to align UnderlinedTextView with an ImageView -->
         <LinearLayout
@@ -71,6 +35,7 @@
                 android:maxLines="3"
                 android:minLines="1"
                 android:elegantTextHeight="true"
+                android:fontFamily="@fonts/shreenath"
                 android:textColor="@color/day_underline_icon_fill_color_top"
                 android:textSize="17sp" />
 
@@ -141,6 +106,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="Add Note"
+                       android:textColor="@color/black"
                        android:textSize="14sp"/>
                </LinearLayout>
 

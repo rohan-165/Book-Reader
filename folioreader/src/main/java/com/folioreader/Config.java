@@ -21,7 +21,7 @@ public class Config implements Parcelable {
     private static final String LOG_TAG = Config.class.getSimpleName();
     public static final String INTENT_CONFIG = "config";
     public static final String EXTRA_OVERRIDE_CONFIG = "com.folioreader.extra.OVERRIDE_CONFIG";
-    public static final String CONFIG_FONT = "font";
+    public static final String CONFIG_FONT = "fonts";
     public static final String CONFIG_FONT_SIZE = "font_size";
     public static final String CONFIG_IS_NIGHT_MODE = "is_night_mode";
     public static final String CONFIG_THEME_COLOR_INT = "theme_color_int";

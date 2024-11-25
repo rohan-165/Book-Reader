@@ -110,11 +110,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private var bookFileName: String? = null
 
     private var mFolioPageViewPager: DirectionalViewpager? = null
-//    private var actionBar: ActionBar? = null
-    private lateinit var mainactionBar: LinearLayout
+    private lateinit var mainactionbar: LinearLayout
     private var appBarLayout: FolioAppBarLayout? = null
-//    private var toolbar: Toolbar? = null
-//    private var createdMenu: Menu? = null
     private var distractionFreeMode: Boolean = false
     private var handler: Handler? = null
 
@@ -313,8 +310,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             mEpubFilePath = intent.extras!!.getString(INTENT_EPUB_SOURCE_PATH)
         }
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-//        initActionBar()
-        initFloatingactionButton()
+        initCustomAppBar()
         initMediaController()
 
 
@@ -347,14 +343,14 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         }
     }
 
-    private  fun initFloatingactionButton() {
+    private  fun initCustomAppBar() {
         appBarLayout = findViewById(R.id.folio_appBarLayout)
-        mainactionBar = findViewById<LinearLayout>(R.id.main_app_bar)
+        mainactionbar = findViewById<LinearLayout>(R.id.main_app_bar)
         // Initialize the FloatingActionButton
         val mainBackButton = findViewById<ImageView>(R.id.main_back_button)
-        val bookMark = findViewById<FloatingActionButton>(R.id.fab_bookmark)
-        val font = findViewById<FloatingActionButton>(R.id.fab_font)
-        val drawer = findViewById<FloatingActionButton>(R.id.fab_drawer)
+        val bookMark = findViewById<ImageView>(R.id.fab_bookmark)
+        val font = findViewById<ImageView>(R.id.fab_font)
+        val drawer = findViewById<ImageView>(R.id.fab_drawer)
 
         mainBackButton.setOnClickListener {
             finish()
@@ -420,54 +416,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         }
     }
 
-//    private fun initActionBar() {
-//        appBarLayout = findViewById(R.id.folio_appBarLayout)
-//        toolbar = findViewById(R.id.folio_toolbar)
-//        setSupportActionBar(toolbar)
-//        actionBar = supportActionBar
-//        // Ensure ActionBar exists before using it
-//        actionBar?.apply {
-//            setDisplayShowTitleEnabled(false)
-//        } ?: throw IllegalStateException("ActionBar is not initialized.")
-//
-//        val config = AppUtil.getSavedConfig(applicationContext)!!
-//
-//        val drawable = ContextCompat.getDrawable(this, R.drawable.abc_vector_test)
-//        UiUtil.setColorIntToDrawable(config.currentThemeColor, drawable!!)
-//        toolbar!!.navigationIcon = drawable
-//
-//
-//        // Get the menu from the toolbar
-//        val menu = toolbar!!.menu
-//
-//
-//
-//
-////        if (config.isNightMode) {
-////            setNightMode()
-////        } else {
-////            setDayMode()
-////        }
-////
-////        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-////            val color: Int = if (config.isNightMode) {
-////                ContextCompat.getColor(this, R.color.black)
-////            } else {
-////                val attrs = intArrayOf(android.R.attr.navigationBarColor)
-////                val typedArray = theme.obtainStyledAttributes(attrs)
-////                typedArray.getColor(0, ContextCompat.getColor(this, R.color.white))
-////            }
-////            window.navigationBarColor = color
-////        }
-////
-////        if (Build.VERSION.SDK_INT < 16) {
-////            // Fix for appBarLayout.fitSystemWindows() not being called on API < 16
-////            appBarLayout!!.setTopMargin(statusBarHeight)
-////        }
-//
-//        // Invalidate and refresh menu to ensure it updates
-//        invalidateOptionsMenu()
-//    }
 
     override fun setDayMode() {
         Log.v(LOG_TAG, "-> setDayMode")
@@ -476,27 +424,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             ColorDrawable(ContextCompat.getColor(this, R.color.white))
         )
 
-//        toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.black))
-
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
-        // Update drawer color
-//        val newNavIcon = toolbar?.navigationIcon
-//        UiUtil.setColorIntToDrawable(config.themeColor, newNavIcon)
-//        toolbar?.navigationIcon = newNavIcon
-
-
-
-        // Update toolbar colors
-//        createdMenu?.let { m ->
-//            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemBookmark).icon)
-//            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemSearch).icon)
-//            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemConfig).icon)
-//            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemDrawer).icon)
-//            UiUtil.setColorIntToDrawable(config.themeColor, m.findItem(R.id.itemTts).icon)
-//        }
-
-//        toolbar?.getOverflowIcon()?.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
 
     }
 
@@ -507,25 +436,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             ColorDrawable(ContextCompat.getColor(this, R.color.black))
         )
 
-//        toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.night_title_text_color))
-
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
-        // Update drawer color
-//        val newNavIcon = toolbar?.navigationIcon
-//        UiUtil.setColorIntToDrawable(config.nightThemeColor, newNavIcon)
-//        toolbar?.navigationIcon = newNavIcon
-
-        // Update toolbar colors
-//        createdMenu?.let { m ->
-//            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemBookmark).icon)
-//            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemSearch).icon)
-//            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemConfig).icon)
-//            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemDrawer).icon)
-//            UiUtil.setColorIntToDrawable(config.nightThemeColor, m.findItem(R.id.itemTts).icon)
-//        }
-
-//        toolbar?.getOverflowIcon()?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
     }
 
@@ -537,40 +449,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         try {
-//            createdMenu = menu
             menuInflater.inflate(R.menu.menu_main, menu)
 
             val config = AppUtil.getSavedConfig(applicationContext)!!
 
-
-//            toolbar?.getOverflowIcon()?.setColorFilter(config.currentThemeColor, PorterDuff.Mode.SRC_ATOP);
-//            for (i in 0 until menu.size()) {
-//                val drawable: Drawable = menu.getItem(i).getIcon()
-//                if (drawable != null) {
-//                    drawable.mutate()
-//                    drawable.setColorFilter(
-//                        config.currentThemeColor,
-//                        PorterDuff.Mode.SRC_ATOP
-//                    )
-//                }
-//            }
-
-
-//            UiUtil.setColorIntToDrawable(
-//                config.currentThemeColor, menu.findItem(R.id.itemBookmark).icon
-//            )
-//            UiUtil.setColorIntToDrawable(
-//                config.currentThemeColor, menu.findItem(R.id.itemSearch).icon
-//            )
-//            UiUtil.setColorIntToDrawable(
-//                config.currentThemeColor, menu.findItem(R.id.itemConfig).icon
-//            )
-//            UiUtil.setColorIntToDrawable(
-//                config.currentThemeColor, menu.findItem(R.id.itemDrawer).icon
-//            )
-//            UiUtil.setColorIntToDrawable(config.currentThemeColor, menu.findItem(R.id.itemTts).icon)
-
-//            if (!config.isShowTts) menu.findItem(R.id.itemTts).isVisible = false
         } catch (e: Exception) {
             Log.e("FOLIOREADER", e.message.toString())
         }
@@ -588,86 +470,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 return true
             }
 
-//            R.id.itemDrawer -> {
-//                Log.v(LOG_TAG, "-> onOptionsItemSelected -> drawer")
-//                startContentHighlightActivity()
-//                return true
-//            }
-//
-//            R.id.itemBookmark -> {
-//                val readLocator = currentFragment!!.getLastReadLocator()
-//                Log.v(LOG_TAG, "-> onOptionsItemSelected 'if' -> bookmark")
-//
-//                bookmarkReadLocator = readLocator
-//                val localBroadcastManager = LocalBroadcastManager.getInstance(this)
-//                val intent = Intent(FolioReader.ACTION_SAVE_READ_LOCATOR)
-//                intent.putExtra(FolioReader.EXTRA_READ_LOCATOR, readLocator as Parcelable?)
-//                localBroadcastManager.sendBroadcast(intent)
-//                val dialog = Dialog(this, R.style.DialogCustomTheme)
-//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//                dialog.setContentView(R.layout.dialog_bookmark)
-//                dialog.show()
-//                dialog.setCanceledOnTouchOutside(true)
-//                dialog.setOnCancelListener {
-//                    Toast.makeText(
-//                        this, "please enter a Bookmark name and then press Save", Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//                dialog.findViewById<View>(R.id.btn_save_bookmark).setOnClickListener {
-//                    val name =
-//                        (dialog.findViewById<View>(R.id.bookmark_name) as EditText).text.toString()
-//                    if (!TextUtils.isEmpty(name)) {
-//                        val simpleDateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
-//                        val id = BookmarkTable(this).insertBookmark(
-//                            mBookId,
-//                            simpleDateFormat.format(Date()),
-//                            name,
-//                            bookmarkReadLocator!!.toJson().toString()
-//                        )
-//                        Toast.makeText(
-//                            this, getString(R.string.book_mark_success), Toast.LENGTH_SHORT
-//                        ).show()
-//                    } else {
-//                        Toast.makeText(
-//                            this,
-//                            "please Enter a Bookmark name and then press Save",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//                    dialog.dismiss()
-//                }
-//
-//                dialog.findViewById<View>(R.id.close_button).setOnClickListener {
-//                    dialog.dismiss()
-//                }
-//
-//
-//                return true
-//            }
-
-//            R.id.itemSearch -> {
-//                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
-//                if (searchUri == null) return true
-//                val intent = Intent(this, SearchActivity::class.java)
-//                intent.putExtra(SearchActivity.BUNDLE_SPINE_SIZE, spine?.size ?: 0)
-//                intent.putExtra(SearchActivity.BUNDLE_SEARCH_URI, searchUri)
-//                intent.putExtra(SearchAdapter.DATA_BUNDLE, searchAdapterDataBundle)
-//                intent.putExtra(SearchActivity.BUNDLE_SAVE_SEARCH_QUERY, searchQuery)
-//                startActivityForResult(intent, RequestCode.SEARCH.value)
-//                return true
-//
-//            }
-//            R.id.itemConfig -> {
-//                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
-//                showConfigBottomSheetDialogFragment()
-//                return true
-//
-//            }
-//            R.id.itemTts -> {
-//                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
-//                showMediaController()
-//                return true
-//            }
             else -> return super.onOptionsItemSelected(item)
         }
 
@@ -962,16 +764,16 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         distractionFreeMode = visibility != View.SYSTEM_UI_FLAG_VISIBLE
         Log.v(LOG_TAG, "-> distractionFreeMode = $distractionFreeMode")
 
-        if (mainactionBar != null) {
+        if (mainactionbar != null) {
             if (distractionFreeMode) {
 //                actionBar?.hide()
                 Log.v(LOG_TAG, "-> onSystemUiVisibilityChange -> distractionFreeMode = $distractionFreeMode ,!! View.GONE -> ${View.GONE}")
-                mainactionBar.visibility = View.VISIBLE
+                mainactionbar.visibility = View.VISIBLE
             } else {
                 Log.v(LOG_TAG, "-> onSystemUiVisibilityChange -> visibility = $visibility")
 //                actionBar?.show()
                 Log.v(LOG_TAG, "-> onSystemUiVisibilityChange -> distractionFreeMode = $distractionFreeMode ,!! View.VISIBLE -> ${View.VISIBLE}")
-                mainactionBar.visibility = View.GONE
+                mainactionbar.visibility = View.GONE
             }
         }
     }

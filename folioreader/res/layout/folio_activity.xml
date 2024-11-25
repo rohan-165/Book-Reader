@@ -25,32 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/folio_toolbar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?android:attr/actionBarSize"-->
-<!--            app:contentInsetLeft="0dp"-->
-<!--            app:contentInsetStart="0dp"-->
-<!--            app:contentInsetStartWithNavigation="0dp" />-->
-
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/pageCount"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center_vertical"-->
-<!--        android:layout_marginBottom="60dp"-->
-<!--        android:background="@drawable/rounded"-->
-<!--        android:elevation="10dp"-->
-<!--        android:paddingStart="12dp"-->
-<!--        android:paddingTop="6dp"-->
-<!--        android:paddingEnd="10dp"-->
-<!--        android:paddingBottom="6dp"-->
-<!--        android:textColor="#80FFFFFF"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/folioPageViewPager"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/folioPageViewPager"-->
-<!--        tools:text="1" />-->
 
     <LinearLayout
         android:id="@+id/main_app_bar"
@@ -72,28 +46,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/abc_vector_test"
-            android:tint="@color/black"
+            android:tint="@color/transparent_black"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
+            android:paddingVertical="10dp"
+            android:paddingLeft="10dp"
             android:contentDescription="Image" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageView
             android:id="@+id/fab_drawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:tint="@color/black"
-            app:backgroundTint="@color/white"
             android:padding="10dp"
-            android:contentDescription="Floating Action Button"
-            app:srcCompat="@drawable/ic_drawer"
-            app:elevation="0dp"
-            app:borderWidth="0dp"
-            app:useCompatPadding="false" />
+            android:contentDescription="Drawer Button"
+            app:srcCompat="@drawable/ic_drawer" />
 
         <TextView
             android:id="@+id/app_bar_title"
-            android:layout_width="200dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textSize="18sp"
@@ -110,33 +79,24 @@
             android:layout_weight="1" />
 
         <!-- Floating Action Buttons aligned to the right -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageView
             android:id="@+id/fab_bookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:tint="@color/black"
-            app:backgroundTint="@color/white"
-            android:padding="10dp"
-            android:contentDescription="Floating Action Button"
-            app:srcCompat="@drawable/ic_baseline_bookmark_border_24"
-            app:elevation="0dp"
-            app:borderWidth="0dp"
-            app:useCompatPadding="false" />
+            android:paddingVertical="10dp"
+            android:paddingLeft="10dp"
+            android:contentDescription="Book Mark Button"
+            app:srcCompat="@drawable/ic_baseline_bookmark_border_24"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageView
             android:id="@+id/fab_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:tint="@color/black"
-            app:backgroundTint="@color/white"
-            android:padding="10dp"
-            android:contentDescription="Floating Action Button"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
+            android:contentDescription="Font Setting Button"
             app:srcCompat="@drawable/icon_font"
-            app:elevation="0dp"
-            app:borderWidth="0dp"
-            app:useCompatPadding="false" />
+             />
 
 
     </LinearLayout>
