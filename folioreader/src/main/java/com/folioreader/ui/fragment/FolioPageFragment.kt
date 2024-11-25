@@ -266,8 +266,8 @@ class FolioPageFragment(private var pageViewModel: PageTrackerViewModel) : Fragm
             getLastReadLocator()
 
         if (isAdded) {
-            mWebview!!.dismissPopupWindow()
-            mWebview!!.initViewTextSelection()
+//            mWebview!!.dismissPopupWindow()
+//            mWebview!!.initViewTextSelection()
             loadingView!!.updateTheme()
             loadingView!!.show()
             mIsPageReloaded = true
