@@ -16,6 +16,7 @@
 package com.folioreader.ui.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
 import android.app.Dialog
@@ -343,6 +344,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private  fun initCustomAppBar() {
         appBarLayout = findViewById(R.id.folio_appBarLayout)
         mainactionbar = findViewById<LinearLayout>(R.id.main_app_bar)
@@ -974,14 +976,14 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                         mFolioPageFragmentAdapter!!.getItem(position - 1) as FolioPageFragment?
                     if (folioPageFragment != null) {
                         folioPageFragment.scrollToLast()
-//                        if (folioPageFragment.mWebview != null) folioPageFragment.mWebview!!.dismissPopupWindow()
+                        if (folioPageFragment.mWebview != null) folioPageFragment.mWebview!!.dismissPopupWindow()
                     }
 
                     folioPageFragment =
                         mFolioPageFragmentAdapter!!.getItem(position + 1) as FolioPageFragment?
                     if (folioPageFragment != null) {
                         folioPageFragment.scrollToFirst()
-//                        if (folioPageFragment.mWebview != null) folioPageFragment.mWebview!!.dismissPopupWindow()
+                        if (folioPageFragment.mWebview != null) folioPageFragment.mWebview!!.dismissPopupWindow()
                     }
                 }
             }
