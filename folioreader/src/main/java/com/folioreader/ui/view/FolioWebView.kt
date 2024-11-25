@@ -203,27 +203,27 @@ class FolioWebView : WebView {
         }
     }
 
-    @JavascriptInterface
-    fun dismissPopupWindow(): Boolean {
-        Log.d(LOG_TAG, "-> dismissPopupWindow -> " + parentFragment.spineItem?.href)
-        val wasShowing = popupWindow.isShowing
-        if (Looper.getMainLooper().thread == Thread.currentThread()) {
-            popupWindow.dismiss()
-        } else {
-            uiHandler.post { popupWindow.dismiss() }
-        }
-        selectionRect = Rect()
-        if(isScrollingRunnable!=null){
-            uiHandler.removeCallbacks(isScrollingRunnable!!)
-        }
-        isScrollingCheckDuration = 0
-        return wasShowing
-    }
+//    @JavascriptInterface
+//    fun dismissPopupWindow(): Boolean {
+//        Log.d(LOG_TAG, "-> dismissPopupWindow -> " + parentFragment.spineItem?.href)
+//        val wasShowing = popupWindow.isShowing
+//        if (Looper.getMainLooper().thread == Thread.currentThread()) {
+//            popupWindow.dismiss()
+//        } else {
+//            uiHandler.post { popupWindow.dismiss() }
+//        }
+//        selectionRect = Rect()
+//        if(isScrollingRunnable!=null){
+//            uiHandler.removeCallbacks(isScrollingRunnable!!)
+//        }
+//        isScrollingCheckDuration = 0
+//        return wasShowing
+//    }
 
     override fun destroy() {
         super.destroy()
         Log.d(LOG_TAG, "-> destroy")
-        dismissPopupWindow()
+//        dismissPopupWindow()
         destroyed = true
     }
 
@@ -282,66 +282,66 @@ class FolioWebView : WebView {
 //        initViewTextSelection()
     }
 
-    fun initViewTextSelection() {
-        Log.v(LOG_TAG, "-> initViewTextSelection")
-
-        val textSelectionMiddleDrawable = ContextCompat.getDrawable(
-            context,
-            R.drawable.arrow_down
-        )
-        handleHeight = textSelectionMiddleDrawable?.intrinsicHeight ?: (24 * density).toInt()
-
-        val config = AppUtil.getSavedConfig(context)!!
-        val ctw = if (config.isNightMode) {
-            ContextThemeWrapper(context, R.style.FolioNightTheme)
-        } else {
-            ContextThemeWrapper(context, R.style.FolioDayTheme)
-        }
-        Log.i(LOG_TAG, config.toString())
-        viewTextSelection = LayoutInflater.from(ctw).inflate(R.layout.text_selection, null)
-        viewTextSelection.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-
-        viewTextSelection.yellowHighlight.setOnClickListener {
-            Log.v(LOG_TAG, "-> onClick -> yellowHighlight")
-            onHighlightColorItemsClicked(HighlightStyle.Yellow, false)
-        }
-        viewTextSelection.greenHighlight.setOnClickListener {
-            Log.v(LOG_TAG, "-> onClick -> greenHighlight")
-            onHighlightColorItemsClicked(HighlightStyle.Green, false)
-        }
-        viewTextSelection.blueHighlight.setOnClickListener {
-            Log.v(LOG_TAG, "-> onClick -> blueHighlight")
-            onHighlightColorItemsClicked(HighlightStyle.Blue, false)
-        }
-        viewTextSelection.pinkHighlight.setOnClickListener {
-            Log.v(LOG_TAG, "-> onClick -> pinkHighlight")
-            onHighlightColorItemsClicked(HighlightStyle.Pink, false)
-        }
-        viewTextSelection.underlineHighlight.setOnClickListener {
-            Log.v(LOG_TAG, "-> onClick -> underlineHighlight")
-            onHighlightColorItemsClicked(HighlightStyle.Underline, false)
-        }
-
-        viewTextSelection.deleteHighlight.setOnClickListener {
-            Log.v(LOG_TAG, "-> onClick -> deleteHighlight")
-            dismissPopupWindow()
-            loadUrl("javascript:clearSelection()")
-            loadUrl("javascript:deleteThisHighlight()")
-        }
-
-        viewTextSelection.copySelection.setOnClickListener {
-            dismissPopupWindow()
-            loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
-        }
-        viewTextSelection.shareSelection.setOnClickListener {
-            dismissPopupWindow()
-            loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
-        }
-        viewTextSelection.defineSelection.setOnClickListener {
-            dismissPopupWindow()
-            loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
-        }
-    }
+//    fun initViewTextSelection() {
+//        Log.v(LOG_TAG, "-> initViewTextSelection")
+//
+//        val textSelectionMiddleDrawable = ContextCompat.getDrawable(
+//            context,
+//            R.drawable.arrow_down
+//        )
+//        handleHeight = textSelectionMiddleDrawable?.intrinsicHeight ?: (24 * density).toInt()
+//
+//        val config = AppUtil.getSavedConfig(context)!!
+//        val ctw = if (config.isNightMode) {
+//            ContextThemeWrapper(context, R.style.FolioNightTheme)
+//        } else {
+//            ContextThemeWrapper(context, R.style.FolioDayTheme)
+//        }
+//        Log.i(LOG_TAG, config.toString())
+//        viewTextSelection = LayoutInflater.from(ctw).inflate(R.layout.text_selection, null)
+//        viewTextSelection.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+//
+//        viewTextSelection.yellowHighlight.setOnClickListener {
+//            Log.v(LOG_TAG, "-> onClick -> yellowHighlight")
+//            onHighlightColorItemsClicked(HighlightStyle.Yellow, false)
+//        }
+//        viewTextSelection.greenHighlight.setOnClickListener {
+//            Log.v(LOG_TAG, "-> onClick -> greenHighlight")
+//            onHighlightColorItemsClicked(HighlightStyle.Green, false)
+//        }
+//        viewTextSelection.blueHighlight.setOnClickListener {
+//            Log.v(LOG_TAG, "-> onClick -> blueHighlight")
+//            onHighlightColorItemsClicked(HighlightStyle.Blue, false)
+//        }
+//        viewTextSelection.pinkHighlight.setOnClickListener {
+//            Log.v(LOG_TAG, "-> onClick -> pinkHighlight")
+//            onHighlightColorItemsClicked(HighlightStyle.Pink, false)
+//        }
+//        viewTextSelection.underlineHighlight.setOnClickListener {
+//            Log.v(LOG_TAG, "-> onClick -> underlineHighlight")
+//            onHighlightColorItemsClicked(HighlightStyle.Underline, false)
+//        }
+//
+//        viewTextSelection.deleteHighlight.setOnClickListener {
+//            Log.v(LOG_TAG, "-> onClick -> deleteHighlight")
+//            dismissPopupWindow()
+//            loadUrl("javascript:clearSelection()")
+//            loadUrl("javascript:deleteThisHighlight()")
+//        }
+//
+//        viewTextSelection.copySelection.setOnClickListener {
+//            dismissPopupWindow()
+//            loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
+//        }
+//        viewTextSelection.shareSelection.setOnClickListener {
+//            dismissPopupWindow()
+//            loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
+//        }
+//        viewTextSelection.defineSelection.setOnClickListener {
+//            dismissPopupWindow()
+//            loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
+//        }
+//    }
 
     @JavascriptInterface
     fun onTextSelectionItemClicked(id: Int, selectedText: String?) {
@@ -384,7 +384,7 @@ class FolioWebView : WebView {
 
     private fun onHighlightColorItemsClicked(style: HighlightStyle, isAlreadyCreated: Boolean) {
         parentFragment.highlight(style, isAlreadyCreated)
-        dismissPopupWindow()
+//        dismissPopupWindow()
     }
 
     @JavascriptInterface
@@ -545,7 +545,7 @@ class FolioWebView : WebView {
 
         override fun onDestroyActionMode(mode: ActionMode) {
             Log.d(LOG_TAG, "-> onDestroyActionMode")
-            dismissPopupWindow()
+//            dismissPopupWindow()
         }
     }
 
@@ -570,7 +570,7 @@ class FolioWebView : WebView {
 
         override fun onDestroyActionMode(mode: ActionMode) {
             Log.d(LOG_TAG, "-> onDestroyActionMode")
-            dismissPopupWindow()
+//            dismissPopupWindow()
         }
 
         override fun onGetContentRect(mode: ActionMode, view: View, outRect: Rect) {
