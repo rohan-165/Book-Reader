@@ -160,39 +160,38 @@ class FolioWebView : WebView {
     }
 
     private inner class HorizontalGestureListener : GestureDetector.SimpleOnGestureListener() {
+        override fun onScroll(
+            e1: MotionEvent?,
+            e2: MotionEvent,
+            distanceX: Float,
+            distanceY: Float
+        ): Boolean {
+            //Log.d(LOG_TAG, "-> onScroll -> e1 = " + e1 + ", e2 = " + e2 + ", distanceX = " + distanceX + ", distanceY = " + distanceY);
+            lastScrollType = LastScrollType.USER
+            return false
+        }
 
-//        override fun onScroll(
-//            e1: MotionEvent,
-//            e2: MotionEvent,
-//            distanceX: Float,
-//            distanceY: Float
-//        ): Boolean {
-//            //Log.d(LOG_TAG, "-> onScroll -> e1 = " + e1 + ", e2 = " + e2 + ", distanceX = " + distanceX + ", distanceY = " + distanceY);
-//            lastScrollType = LastScrollType.USER
-//            return false
-//        }
-//
-//        override fun onFling(
-//            e1: MotionEvent,
-//            e2: MotionEvent,
-//            velocityX: Float,
-//            velocityY: Float
-//        ): Boolean {
-//            //Log.d(LOG_TAG, "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY);
-//
-//            if (!webViewPager.isScrolling) {
-//                // Need to complete the scroll as ViewPager thinks these touch events should not
-//                // scroll it's pages.
-//                //Log.d(LOG_TAG, "-> onFling -> completing scroll");
-//                uiHandler.postDelayed({
-//                    // Delayed to avoid inconsistency of scrolling in WebView
-//                    scrollTo(getScrollXPixelsForPage(webViewPager.currentItem), 0)
-//                }, 100)
-//            }
-//
-//            lastScrollType = LastScrollType.USER
-//            return true
-//        }
+     override    fun onFling(
+         e1: MotionEvent?,
+         e2: MotionEvent,
+         velocityX: Float,
+         velocityY: Float
+     ): Boolean {
+            //Log.d(LOG_TAG, "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY);
+
+            if (!webViewPager.isScrolling) {
+                // Need to complete the scroll as ViewPager thinks these touch events should not
+                // scroll it's pages.
+                //Log.d(LOG_TAG, "-> onFling -> completing scroll");
+                uiHandler.postDelayed({
+                    // Delayed to avoid inconsistency of scrolling in WebView
+                    scrollTo(getScrollXPixelsForPage(webViewPager.currentItem), 0)
+                }, 100)
+            }
+
+            lastScrollType = LastScrollType.USER
+            return true
+        }
 
         override fun onDown(event: MotionEvent): Boolean {
             //Log.v(LOG_TAG, "-> onDown -> " + event.toString());
@@ -228,33 +227,32 @@ class FolioWebView : WebView {
     }
 
     private inner class VerticalGestureListener : GestureDetector.SimpleOnGestureListener() {
+       override  fun onScroll(
+           e1: MotionEvent?,
+           e2: MotionEvent,
+           distanceX: Float,
+           distanceY: Float
+       ): Boolean {
+//            Log.v(LOG_TAG, "-> onScroll -> e1 = " + e1 + ", e2 = " + e2 + ", distanceX = " + distanceX + ", distanceY = " + distanceY);
+            parentFragment.mWebview?.let { wv ->
+                calculatedProgress = (wv.scrollY.toDouble() / wv.contentHeightVal.toDouble()) * 100.0
+//                val fmtProgress = "%.2f".format(calculatedProgress)
+//                println("VProgress: $fmtProgress%")
+            }
+            lastScrollType = LastScrollType.USER
+            return false
+        }
 
-//        override fun onScroll(
-//            e1: MotionEvent,
-//            e2: MotionEvent,
-//            distanceX: Float,
-//            distanceY: Float
-//        ): Boolean {
-////            Log.v(LOG_TAG, "-> onScroll -> e1 = " + e1 + ", e2 = " + e2 + ", distanceX = " + distanceX + ", distanceY = " + distanceY);
-//            parentFragment.mWebview?.let { wv ->
-//                calculatedProgress = (wv.scrollY.toDouble() / wv.contentHeightVal.toDouble()) * 100.0
-////                val fmtProgress = "%.2f".format(calculatedProgress)
-////                println("VProgress: $fmtProgress%")
-//            }
-//            lastScrollType = LastScrollType.USER
-//            return false
-//        }
-//
-//        override fun onFling(
-//            e1: MotionEvent,
-//            e2: MotionEvent,
-//            velocityX: Float,
-//            velocityY: Float
-//        ): Boolean {
-//            //Log.v(LOG_TAG, "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY);
-//            lastScrollType = LastScrollType.USER
-//            return false
-//        }
+      override  fun onFling(
+          e1: MotionEvent?,
+          e2: MotionEvent,
+          velocityX: Float,
+          velocityY: Float
+      ): Boolean {
+            //Log.v(LOG_TAG, "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY);
+            lastScrollType = LastScrollType.USER
+            return false
+        }
     }
 
     constructor(context: Context) : super(context)

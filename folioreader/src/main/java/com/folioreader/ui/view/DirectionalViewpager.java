@@ -5,6 +5,7 @@ package com.folioreader.ui.view;
  */
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -2391,6 +2392,7 @@ public class DirectionalViewpager extends ViewGroup {
         }
     }
 
+    @SuppressLint("WrongConstant")
     private void enableLayers(boolean enable) {
         final int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -3894,7 +3896,7 @@ public class DirectionalViewpager extends ViewGroup {
     @Override
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
         // Dispatch scroll events from this ViewPager.
-        if (event.getEventType() == AccessibilityEventCompat.TYPE_VIEW_SCROLLED) {
+        if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
             return super.dispatchPopulateAccessibilityEvent(event);
         }
 
@@ -3948,7 +3950,7 @@ public class DirectionalViewpager extends ViewGroup {
                 recordCompat = AccessibilityRecordCompat.obtain();
             }
             recordCompat.setScrollable(canScroll());
-            if (event.getEventType() == AccessibilityEventCompat.TYPE_VIEW_SCROLLED
+            if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_SCROLLED
                     && mAdapter != null) {
                 recordCompat.setItemCount(mAdapter.getCount());
                 recordCompat.setFromIndex(mCurItem);

@@ -25,10 +25,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
-import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -45,12 +43,9 @@ import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -88,10 +83,8 @@ import com.folioreader.ui.view.FolioAppBarLayout
 import com.folioreader.ui.view.MediaControllerCallback
 import com.folioreader.util.AppUtil
 import com.folioreader.util.FileUtil
-import com.folioreader.util.UiUtil
 import com.folioreader.viewmodels.PageTrackerViewModel
 import com.folioreader.viewmodels.PageTrackerViewModelFactory
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.greenrobot.eventbus.EventBus
 import org.readium.r2.shared.Link
 import org.readium.r2.shared.Publication
@@ -223,7 +216,14 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     }
 
     private enum class RequestCode(val value: Int) {
-        CONTENT_HIGHLIGHT(77), SEARCH(101)
+        CONTENT_HIGHLIGHT(77),
+        SEARCH(101);
+
+        companion object {
+            fun fromValue(value: Int): RequestCode? {
+                return values().find { it.value == value }
+            }
+        }
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -641,8 +641,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         window.decorView.setOnSystemUiVisibilityChangeListener(this)
 
         // Deliberately Hidden and shown to make activity contents lay out behind SystemUI
-        hideSystemUI()
+
         showSystemUI()
+        hideSystemUI()
 
         distractionFreeMode =
             savedInstanceState != null && savedInstanceState.getBoolean(BUNDLE_DISTRACTION_FREE_MODE)
@@ -654,6 +655,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         if (!distractionFreeMode) {
             handler?.post { hideSystemUI() }
+        } else {
+            handler?.post { showSystemUI() }
         }
     }
 
@@ -663,7 +666,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun getTopDistraction(unit: DisplayUnit): Int {
 
         var topDistraction = 0
-        if (!distractionFreeMode) {
+        if (distractionFreeMode) {
 //            topDistraction = statusBarHeight
 //            if (actionBar != null) topDistraction += 5
 //            if (actionBar != null) topDistraction += actionBar!!.height
@@ -767,7 +770,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         Log.v(LOG_TAG, "-> distractionFreeMode = $distractionFreeMode")
 
         if (mainactionbar != null) {
-            if (distractionFreeMode) {
+            if (!distractionFreeMode) {
 //                actionBar?.hide()
                 Log.v(LOG_TAG, "-> onSystemUiVisibilityChange -> distractionFreeMode = $distractionFreeMode ,!! View.GONE -> ${View.GONE}")
                 mainactionbar.visibility = View.VISIBLE
