@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:id="@+id/drawer_top_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -43,10 +43,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingHorizontal="5dp">
-
-
+            android:gravity="center">
 
             <LinearLayout
                 android:id="@+id/layout_content_highlights"
@@ -101,5 +98,6 @@
         android:id="@+id/parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/content_toolbar" />
+        android:layout_below="@id/content_toolbar"
+        android:layout_marginTop="1dp" />
 </RelativeLayout>

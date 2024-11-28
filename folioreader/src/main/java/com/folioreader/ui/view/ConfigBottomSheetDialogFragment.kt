@@ -3,6 +3,7 @@ package com.folioreader.ui.view
 import android.animation.Animator
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.widget.AdapterView
 import android.widget.FrameLayout
 import android.widget.SeekBar
 import android.widget.Switch
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.folioreader.Config
@@ -72,6 +74,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
         }
 
         config = AppUtil.getSavedConfig(activity)!!
+
         isNightMode = config.isNightMode  // Set initial value based on config
         initViews()
     }
@@ -88,8 +91,16 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
         configSeekBar()
         selectFont(config.font, false)
         isNightMode = config.isNightMode
+
+        val smallFont = view?.findViewById<TextView>(R.id.view_config_iv_label_font_small)!!
+        val largeFont = view?.findViewById<TextView>(R.id.view_config_iv_label_font_big)!!
+        val fontTitle = view?.findViewById<TextView>(R.id.font_text_title)!!
         if (isNightMode) {
             container.setBackgroundColor(ContextCompat.getColor(context!!, R.color.night))
+            largeFont.setTextColor(Color.WHITE)
+            smallFont.setTextColor(Color.WHITE)
+            fontTitle.setTextColor(Color.WHITE)
+
         } else {
             container.setBackgroundColor(ContextCompat.getColor(context!!, R.color.white))
         }

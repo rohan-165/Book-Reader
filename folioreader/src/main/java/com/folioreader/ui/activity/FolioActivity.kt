@@ -25,6 +25,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -43,6 +44,8 @@ import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -216,14 +219,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     }
 
     private enum class RequestCode(val value: Int) {
-        CONTENT_HIGHLIGHT(77),
-        SEARCH(101);
-
-        companion object {
-            fun fromValue(value: Int): RequestCode? {
-                return values().find { it.value == value }
-            }
-        }
+        CONTENT_HIGHLIGHT(77), SEARCH(101)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -353,9 +349,30 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         val bookMark = findViewById<ImageView>(R.id.fab_bookmark)
         val font = findViewById<ImageView>(R.id.fab_font)
         val drawer = findViewById<ImageView>(R.id.fab_drawer)
+        val apptitle = findViewById<TextView>(R.id.app_bar_title)
+
+        val config = AppUtil.getSavedConfig(applicationContext)!!
 
         mainBackButton.setOnClickListener {
             finish()
+        }
+
+        if (config.isNightMode) {
+            actionBar?.setBackgroundDrawable(
+                ColorDrawable(ContextCompat.getColor(this, R.color.black)))
+            mainactionbar?.setBackgroundColor(
+                ContextCompat.getColor(this, R.color.black))
+            mainBackButton?.setColorFilter(Color.WHITE)
+            bookMark?.setColorFilter(Color.WHITE)
+            font?.setColorFilter(Color.WHITE)
+            drawer?.setColorFilter(Color.WHITE)
+            apptitle?.setTextColor(Color.WHITE)
+        } else {
+            actionBar?.setBackgroundDrawable(
+                ColorDrawable(ContextCompat.getColor(this, R.color.white)))
+            mainactionbar?.setBackgroundColor(
+                ContextCompat.getColor(this, R.color.white))
+
         }
 
         // Set up a click listener for the FAB
@@ -401,6 +418,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                     }
                     dialog.dismiss()
                 }
+
 
                 dialog.findViewById<View>(R.id.close_button).setOnClickListener {
                     dialog.dismiss()

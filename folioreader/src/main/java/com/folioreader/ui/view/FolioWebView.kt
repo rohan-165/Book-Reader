@@ -171,26 +171,42 @@ class FolioWebView : WebView {
             return false
         }
 
-     override    fun onFling(
-         e1: MotionEvent?,
-         e2: MotionEvent,
-         velocityX: Float,
-         velocityY: Float
-     ): Boolean {
-            //Log.d(LOG_TAG, "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY);
-
+        override fun onFling(
+            e1: MotionEvent?,
+            e2: MotionEvent,
+            velocityX: Float,
+            velocityY: Float
+        ): Boolean {
             if (!webViewPager.isScrolling) {
-                // Need to complete the scroll as ViewPager thinks these touch events should not
-                // scroll it's pages.
-                //Log.d(LOG_TAG, "-> onFling -> completing scroll");
-                uiHandler.postDelayed({
-                    // Delayed to avoid inconsistency of scrolling in WebView
-                    scrollTo(getScrollXPixelsForPage(webViewPager.currentItem), 0)
-                }, 100)
-            }
+                val thresholdVelocity = 120000f
+                val currentPage = webViewPager.currentItem
+                val pageCount = webViewPager.adapter?.count ?: 0
+                val nextPage = (currentPage + 1).coerceAtMost(pageCount - 1)
+                val prevPage = (currentPage - 1).coerceAtLeast(0)
 
-            lastScrollType = LastScrollType.USER
+                when {
+                    velocityX < -thresholdVelocity -> {
+                        // Fling left to the next page
+                        smoothScrollToPage(nextPage)
+                    }
+                    velocityX > thresholdVelocity -> {
+                        // Fling right to the previous page
+                        smoothScrollToPage(prevPage)
+                    }
+                    else -> {
+                        // Stay on the current page
+                        smoothScrollToPage(currentPage)
+                    }
+                }
+
+                lastScrollType = LastScrollType.USER
+
+            }
             return true
+        }
+
+        private fun smoothScrollToPage(page: Int) {
+            webViewPager.setCurrentItem(page, true)
         }
 
         override fun onDown(event: MotionEvent): Boolean {

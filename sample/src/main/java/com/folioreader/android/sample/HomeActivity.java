@@ -70,6 +70,7 @@ public class HomeActivity extends AppCompatActivity
                 if (config == null)
                     config = new Config();
                 config.setAllowedDirection(Config.AllowedDirection.VERTICAL_AND_HORIZONTAL);
+                config.setNightMode(false);
 
                 folioReader.setConfig(config, true)
                         .openBook(R.raw.four);
@@ -96,13 +97,13 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        Config config = AppUtil.getSavedConfig(getApplicationContext());
-        if (config == null)
-            config = new Config();
-        config.setAllowedDirection(Config.AllowedDirection.ONLY_VERTICAL);
-
-        folioReader.setConfig(config, true)
-                .openBook(R.raw.accessible_epub_3);
+//        Config config = AppUtil.getSavedConfig(getApplicationContext());
+//        if (config == null)
+//            config = new Config();
+//        config.setAllowedDirection(Config.AllowedDirection.ONLY_HORIZONTAL);
+//
+//        folioReader.setConfig(config, true)
+//                .openBook(R.raw.accessible_epub_3);
     }
 
     private ReadLocator getLastReadLocator() {
