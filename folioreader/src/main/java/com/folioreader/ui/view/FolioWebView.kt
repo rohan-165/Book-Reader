@@ -259,16 +259,16 @@ class FolioWebView : WebView {
             return false
         }
 
-      override  fun onFling(
-          e1: MotionEvent?,
-          e2: MotionEvent,
-          velocityX: Float,
-          velocityY: Float
-      ): Boolean {
-            //Log.v(LOG_TAG, "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY);
-            lastScrollType = LastScrollType.USER
-            return false
-        }
+//      override  fun onFling(
+//          e1: MotionEvent?,
+//          e2: MotionEvent,
+//          velocityX: Float,
+//          velocityY: Float
+//      ): Boolean {
+//            //Log.v(LOG_TAG, "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY);
+//            lastScrollType = LastScrollType.USER
+//            return false
+//        }
     }
 
     constructor(context: Context) : super(context)
