@@ -592,16 +592,6 @@ function preInitHorizontalDirection() {
     bodyElement.style.webkitColumnGap = (paddingLeft + paddingRight) + 'px';
     bodyElement.style.webkitColumnWidth = pageWidth + 'px';
     bodyElement.style.columnFill = 'auto';
-
-    //console.log("-> window.innerWidth = " + window.innerWidth);
-    //console.log("-> window.innerHeight = " + window.innerHeight);
-    //console.log("-> clientWidth = " + document.documentElement.clientWidth);
-    //console.log("-> clientHeight = " + document.documentElement.clientHeight);
-    //console.log("-> bodyElement.offsetWidth = " + bodyElement.offsetWidth);
-    //console.log("-> bodyElement.offsetHeight = " + bodyElement.offsetHeight);
-    //console.log("-> pageWidth = " + pageWidth);
-    //console.log("-> pageHeight = " + pageHeight);
-
     htmlElement.style.height = (pageHeight + (paddingTop + paddingBottom)) + 'px';
     bodyElement.style.height = pageHeight + 'px';
 }
@@ -637,10 +627,6 @@ function postInitHorizontalDirection() {
         console.warn("-> pageCount = " + pageCount + ", pageCountFloat = " + pageCountFloat
             + ", Something wrong in pageCount calculation");
     }
-
-    //console.log("-> scrollWidth = " + scrollWidth);
-    //console.log("-> newBodyWidth = " + newBodyWidth);
-    //console.log("-> pageCount = " + pageCount);
 
     FolioPageFragment.setHorizontalPageCount(pageCount);
 }

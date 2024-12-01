@@ -35,6 +35,7 @@ html {
     -webkit-text-size-adjust: none; /* Never autoresize text */
     margin: 0 !important;
     padding: 0 0 !important;
+    scroll-behavior: smooth; /* Smooth scrolling */
 }
 
 body {
@@ -42,6 +43,7 @@ body {
     padding: 100px 20px !important;
 	padding-bottom: 24px !important;
     overflow: !important;
+    scroll-behavior: smooth; /* Smooth scrolling */
 }
 
 /* Custom padding for tablets */
