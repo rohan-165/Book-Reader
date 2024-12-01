@@ -384,7 +384,7 @@ class FolioPageFragment(private var pageViewModel: PageTrackerViewModel) : Fragm
 
         webViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                 pageViewModel.setCurrentPage(position + 1)
+//                 pageViewModel.setCurrentPage(position + 1)
             }
 
             override fun onPageSelected(position: Int) {
@@ -392,7 +392,7 @@ class FolioPageFragment(private var pageViewModel: PageTrackerViewModel) : Fragm
             }
 
             override fun onPageScrollStateChanged(state: Int) {
-                 pageViewModel.setCurrentPage(webViewPager.currentItem + 1)
+//                 pageViewModel.setCurrentPage(webViewPager.currentItem + 1)
             }
         })
 
