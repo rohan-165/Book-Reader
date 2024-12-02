@@ -22,6 +22,7 @@ import com.folioreader.R;
 import com.folioreader.model.sqlite.BookmarkTable;
 import com.folioreader.ui.adapter.BookmarkAdapter;
 import com.folioreader.util.AppUtil;
+import com.folioreader.util.ItemDecoration;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -83,8 +84,15 @@ public class BookmarkFragment extends Fragment implements BookmarkAdapter.Bookma
                     setBackgroundColor(ContextCompat.getColor(getActivity(),
                             R.color.black));
         }
+        // Example usage with padding = 10, border color = gray, corner radius = 8f, elevation = 4f
+        ItemDecoration decoration = new ItemDecoration(
+                20,
+                ContextCompat.getColor(getContext(), R.color.borders),
+                12f,
+                4f
+        );
         bookmarksView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        bookmarksView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        bookmarksView.addItemDecoration(decoration);
 
         adapter = new BookmarkAdapter(getActivity(), BookmarkTable.getBookmarksForID(mBookId, getActivity()), this, config);
         bookmarksView.setAdapter(adapter);

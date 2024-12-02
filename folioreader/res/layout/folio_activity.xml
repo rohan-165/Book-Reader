@@ -26,13 +26,88 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?android:attr/actionBarSize"-->
+<!--            app:contentInsetLeft="0dp"-->
+<!--            app:contentInsetStart="0dp"-->
+<!--            app:contentInsetStartWithNavigation="0dp" />-->
+
+        <LinearLayout
+            android:id="@+id/main_app_bar"
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:contentInsetStartWithNavigation="0dp" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="0dp"
+            android:background="@color/white"
+            tools:ignore="MissingConstraints">
+
+            <!-- ImageView aligned to the left -->
+            <ImageView
+                android:id="@+id/main_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/abc_vector_test"
+                android:tint="@color/transparent_black"
+                android:layout_gravity="center"
+                android:paddingVertical="10dp"
+                android:paddingLeft="10dp"
+                android:contentDescription="Image" />
+
+            <ImageView
+                android:id="@+id/fab_drawer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:contentDescription="Drawer Button"
+                app:srcCompat="@drawable/ic_drawer" />
+
+            <TextView
+                android:id="@+id/app_bar_title"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:lines="1"
+                android:ellipsize="end"
+                android:singleLine="true"/>
+
+            <!-- Space to push FABs to the right -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Floating Action Buttons aligned to the right -->
+            <ImageView
+                android:id="@+id/fab_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:paddingLeft="10dp"
+                android:contentDescription="Book Mark Button"
+                app:srcCompat="@drawable/ic_baseline_bookmark_border_24"/>
+
+            <ImageView
+                android:id="@+id/fab_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="10dp"
+                android:contentDescription="Font Setting Button"
+                app:srcCompat="@drawable/icon_font"
+                />
+
+
+        </LinearLayout>
 
     </com.folioreader.ui.view.FolioAppBarLayout>
 

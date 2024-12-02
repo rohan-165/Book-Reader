@@ -3,81 +3,116 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    android:background="@drawable/rounded_corners_background"
+    android:elevation="10dp"
+    android:hardwareAccelerated="false"
     android:layout_width="match_parent"
-    android:layout_height="203dp"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
     tools:layout_gravity="bottom">
 
-    <ImageButton
-        android:id="@+id/view_config_ib_day_mode"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintEnd_toStartOf="@+id/view_config_ib_night_mode"
+<!--    <ImageButton-->
+<!--        android:id="@+id/view_config_ib_day_mode"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/view_config_ib_night_mode"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:srcCompat="@drawable/icon_sun_sel"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/view_config_ib_night_mode"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/view_config_ib_day_mode"-->
+<!--        app:srcCompat="@drawable/icon_moon_sel"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+<!--    <View-->
+<!--        android:id="@+id/view3"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="@color/grey_color"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/view_config_ib_night_mode" />-->
+
+<!--    <Spinner-->
+<!--        android:id="@+id/view_config_font_spinner"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/view3" />-->
+
+<!--    <View-->
+<!--        android:id="@+id/view4"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="@color/grey_color"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/view_config_font_spinner" />-->
+
+    <TextView
+        android:id="@+id/font_text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/night_title_text_color"
+        app:layout_constraintBottom_toTopOf="@+id/font_text_subtitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/icon_sun_sel"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/font_text_subtitle"
+        android:text="Font Style"
+        tools:ignore="MissingConstraints,NotSibling" />
 
-    <ImageButton
-        android:id="@+id/view_config_ib_night_mode"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view_config_ib_day_mode"
-        app:srcCompat="@drawable/icon_moon_sel"
-        tools:ignore="MissingConstraints" />
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/grey_color"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/font_text_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textStyle="normal"
+        android:textSize="13sp"
+        android:textColor="@color/gray_text"
+        app:layout_constraintBottom_toTopOf="@+id/view_config_font_size_seek_bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_config_ib_night_mode" />
+        app:layout_constraintTop_toBottomOf="@+id/font_text_title"
+        android:text="Customize text size for improved readability and a more comfortable experience."
+        tools:ignore="MissingConstraints,NotSibling" />
 
-    <Spinner
-        android:id="@+id/view_config_font_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-    <View
-        android:id="@+id/view4"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/grey_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_config_font_spinner" />
-
-    <ImageView
+    <TextView
         android:id="@+id/view_config_iv_label_font_small"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_margin="8dp"
         android:adjustViewBounds="false"
+        android:gravity="center"
         android:scaleType="center"
-        android:tint="@color/grey_color"
-        app:layout_constraintBottom_toTopOf="@+id/view5"
+        android:text="A"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/view_config_font_size_seek_bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:layout_constraintTop_toBottomOf="@+id/font_text_subtitle"
         app:srcCompat="@drawable/ic_format_font_black_24dp" />
 
-    <ImageView
+    <TextView
         android:id="@+id/view_config_iv_label_font_big"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_margin="8dp"
         android:cropToPadding="false"
         android:scaleType="center"
-        android:tint="@color/grey_color"
-        app:layout_constraintBottom_toTopOf="@+id/view5"
+        android:textSize="24sp"
+        android:text="A"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view_config_font_size_seek_bar"
-        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:layout_constraintTop_toBottomOf="@+id/font_text_subtitle"
         app:srcCompat="@drawable/ic_format_font_black_36dp" />
 
     <SeekBar
@@ -85,45 +120,45 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:max="4"
-        app:layout_constraintBottom_toTopOf="@+id/view5"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toStartOf="@+id/view_config_iv_label_font_big"
         app:layout_constraintStart_toEndOf="@+id/view_config_iv_label_font_small"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
+        app:layout_constraintTop_toBottomOf="@+id/font_text_subtitle" />
 
-    <View
-        android:id="@+id/view5"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/grey_color"
-        app:layout_constraintBottom_toTopOf="@+id/buttonVertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_config_iv_label_font_small" />
+<!--    <View-->
+<!--        android:id="@+id/view5"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="@color/grey_color"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/buttonVertical"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/view_config_iv_label_font_small" />-->
 
-    <com.folioreader.util.StyleableTextView
-        android:id="@+id/buttonVertical"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="@string/direction_vertical"
-        android:textSize="17sp"
-        app:folio_font="@string/lato_font"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonHorizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view5" />
+<!--    <com.folioreader.util.StyleableTextView-->
+<!--        android:id="@+id/buttonVertical"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/direction_vertical"-->
+<!--        android:textSize="17sp"-->
+<!--        app:folio_font="@string/lato_font"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/buttonHorizontal"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/view5" />-->
 
-    <com.folioreader.util.StyleableTextView
-        android:id="@+id/buttonHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="@string/direction_horizontal"
-        android:textSize="17sp"
-        app:folio_font="@string/lato_font"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonVertical"
-        app:layout_constraintTop_toBottomOf="@+id/view5" />
+<!--    <com.folioreader.util.StyleableTextView-->
+<!--        android:id="@+id/buttonHorizontal"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/direction_horizontal"-->
+<!--        android:textSize="17sp"-->
+<!--        app:folio_font="@string/lato_font"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/buttonVertical"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/view5" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

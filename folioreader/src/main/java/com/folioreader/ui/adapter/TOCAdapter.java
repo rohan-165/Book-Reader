@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -128,14 +129,14 @@ public class TOCAdapter extends MultiLevelExpIndListAdapter {
     public class TOCRowViewHolder extends RecyclerView.ViewHolder {
         public ImageView children;
         TextView sectionTitle;
-        private LinearLayout container;
+        private RelativeLayout container;
         private View view;
 
         TOCRowViewHolder(View itemView) {
             super(itemView);
             view = itemView;
             children = (ImageView) itemView.findViewById(R.id.children);
-            container = (LinearLayout) itemView.findViewById(R.id.container);
+            container = (RelativeLayout) itemView.findViewById(R.id.container);
             children.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

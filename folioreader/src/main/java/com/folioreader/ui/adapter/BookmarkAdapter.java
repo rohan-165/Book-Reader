@@ -65,7 +65,13 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
         }, 10);
         holder.content.setText(bookmarks.get(position).get("name").toString());
         holder.date.setText(bookmarks.get(position).get("date").toString());
-        holder.container.setOnClickListener(new View.OnClickListener() {
+//        holder.container.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                callback.onItemClick(getItem(position));
+//            }
+//        });
+        holder.bookMarkItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callback.onItemClick(getItem(position));
@@ -87,10 +93,10 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
                 ((AppCompatActivity) context).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ViewGroup.LayoutParams params =
-                                holder.swipeLinearLayout.getLayoutParams();
-                        params.height = height;
-                        holder.swipeLinearLayout.setLayoutParams(params);
+//                        ViewGroup.LayoutParams params =
+//                                holder.swipeLinearLayout.getLayoutParams();
+//                        params.height = height;
+//                        holder.swipeLinearLayout.setLayoutParams(params);
                     }
                 });
             }
@@ -99,16 +105,16 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
             holder.container.setBackgroundColor(ContextCompat.getColor(context,
                     R.color.black));
             holder.date.setTextColor(ContextCompat.getColor(context,
-                    R.color.white));
+                    R.color.gray_text));
             holder.content.setTextColor(ContextCompat.getColor(context,
                     R.color.white));
         } else {
             holder.container.setBackgroundColor(ContextCompat.getColor(context,
                     R.color.white));
             holder.date.setTextColor(ContextCompat.getColor(context,
-                    R.color.black));
+                    R.color.gray_text));
             holder.content.setTextColor(ContextCompat.getColor(context,
-                    R.color.black));
+                    R.color.webview_night));
         }
     }
 
@@ -128,13 +134,16 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
         private UnderlinedTextView content;
         private ImageView delete;
         private TextView date;
-        private RelativeLayout container;
-        private LinearLayout swipeLinearLayout;
+        private LinearLayout container;
+        private FrameLayout bookMarkItem;
+//        private LinearLayout swipeLinearLayout;
+
 
         BookmarkHolder(View itemView) {
             super(itemView);
-            container = (RelativeLayout) itemView.findViewById(R.id.bookmark_container);
-            swipeLinearLayout = (LinearLayout) itemView.findViewById(R.id.bookmark_swipe_linear_layout);
+            container = (LinearLayout) itemView.findViewById(R.id.bookMark_Row);
+//            swipeLinearLayout = (LinearLayout) itemView.findViewById(R.id.bookmark_swipe_linear_layout);
+            bookMarkItem = (FrameLayout) itemView.findViewById(R.id.bookmark_item);
             content = (UnderlinedTextView) itemView.findViewById(R.id.utv_bookmark_content);
             delete = (ImageView) itemView.findViewById(R.id.iv_bookmark_delete);
             date = (TextView) itemView.findViewById(R.id.tv_bookmark_date);
