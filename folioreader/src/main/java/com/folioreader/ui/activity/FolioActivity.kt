@@ -763,10 +763,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         Log.v(LOG_TAG, "-> onPostCreate")
 
         if (!distractionFreeMode) {
-            handler!!.post { hideSystemUI() }
+//            handler!!.post { hideSystemUI() }
         }
         else {
-            handler?.post { showSystemUI() }
+//            handler?.post { showSystemUI() }
         }
     }
 
@@ -879,13 +879,13 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         if (mainactionbar != null) {
             if (!distractionFreeMode) {
 //                actionBar!!.show()
-                mainactionbar.visibility = View.VISIBLE
-                pageCountTextView?.visibility = View.VISIBLE
+//                mainactionbar.visibility = View.VISIBLE
+//                pageCountTextView?.visibility = View.VISIBLE
 
             } else {
 //                actionBar!!.hide()
-                mainactionbar.visibility = View.GONE
-                pageCountTextView?.visibility = View.GONE
+//                mainactionbar.visibility = View.GONE
+//                pageCountTextView?.visibility = View.GONE
             }
         }
     }
@@ -893,9 +893,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun toggleSystemUI() {
 
         if (distractionFreeMode) {
-            showSystemUI()
+//            showSystemUI()
         } else {
-            hideSystemUI()
+//            hideSystemUI()
         }
     }
 
