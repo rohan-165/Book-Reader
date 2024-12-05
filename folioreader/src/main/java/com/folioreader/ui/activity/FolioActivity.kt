@@ -73,6 +73,7 @@ import com.folioreader.util.UiUtil
 import com.folioreader.viewmodels.PageTrackerViewModel
 import com.folioreader.viewmodels.PageTrackerViewModelFactory
 import org.greenrobot.eventbus.EventBus
+import org.json.JSONObject
 import org.readium.r2.shared.Link
 import org.readium.r2.shared.Publication
 import org.readium.r2.streamer.parser.CbzParser
@@ -327,7 +328,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         mainactionbar = findViewById<LinearLayout>(R.id.main_app_bar)
         // Initialize the FloatingActionButton
         val mainBackButton = findViewById<ImageView>(R.id.main_back_button)
-        val bookMark = findViewById<ImageView>(R.id.fab_bookmark)
+//      val  bookMark = findViewById<ImageView>(R.id.fab_bookmark)
         val font = findViewById<ImageView>(R.id.fab_font)
         val drawer = findViewById<ImageView>(R.id.fab_drawer)
         val apptitle = findViewById<TextView>(R.id.app_bar_title)
@@ -341,70 +342,70 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         if (config.isNightMode) {
             actionBar?.setBackgroundDrawable(
                 ColorDrawable(ContextCompat.getColor(this, R.color.black)))
-            mainactionbar?.setBackgroundColor(
+            mainactionbar.setBackgroundColor(
                 ContextCompat.getColor(this, R.color.black))
             mainBackButton?.setColorFilter(Color.WHITE)
-            bookMark?.setColorFilter(Color.WHITE)
+//            bookMark?.setColorFilter(Color.WHITE)
             font?.setColorFilter(Color.WHITE)
             drawer?.setColorFilter(Color.WHITE)
             apptitle?.setTextColor(Color.WHITE)
         } else {
             actionBar?.setBackgroundDrawable(
                 ColorDrawable(ContextCompat.getColor(this, R.color.white)))
-            mainactionbar?.setBackgroundColor(
+            mainactionbar.setBackgroundColor(
                 ContextCompat.getColor(this, R.color.white))
 
         }
 
         // Set up a click listener for the FAB
-        bookMark.setOnClickListener {
-            val readLocator = currentFragment?.getLastReadLocator()
-            Log.v(LOG_TAG, "-> onOptionsItemSelected 'if' -> bookmark")
-
-            bookmarkReadLocator = readLocator
-            val localBroadcastManager = LocalBroadcastManager.getInstance(this)
-            val intent = Intent(FolioReader.ACTION_SAVE_READ_LOCATOR)
-            intent.putExtra(FolioReader.EXTRA_READ_LOCATOR, readLocator as Parcelable?)
-            localBroadcastManager.sendBroadcast(intent)
-            val dialog = Dialog(this, R.style.DialogCustomTheme)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.dialog_bookmark)
-            dialog.show()
-            dialog.setCanceledOnTouchOutside(true)
-            dialog.setOnCancelListener {
-                Toast.makeText(
-                    this, "please enter a Bookmark name and then press Save", Toast.LENGTH_SHORT
-                ).show()
-            }
-            dialog.findViewById<View>(R.id.btn_save_bookmark).setOnClickListener {
-                val name =
-                    (dialog.findViewById<View>(R.id.bookmark_name) as EditText).text.toString()
-                if (!TextUtils.isEmpty(name)) {
-                    val simpleDateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
-                    val id = BookmarkTable(this).insertBookmark(
-                        mBookId,
-                        simpleDateFormat.format(Date()),
-                        name,
-                        bookmarkReadLocator?.toJson().toString()
-                    )
-                    Toast.makeText(
-                        this, getString(R.string.book_mark_success), Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        this,
-                        "please Enter a Bookmark name and then press Save",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                dialog.dismiss()
-            }
-
-
-            dialog.findViewById<View>(R.id.close_button).setOnClickListener {
-                dialog.dismiss()
-            }
-        }
+//        bookMark?.setOnClickListener {
+//            val readLocator = currentFragment?.getLastReadLocator()
+//            Log.v(LOG_TAG, "-> onOptionsItemSelected 'if' -> bookmark")
+//
+//            bookmarkReadLocator = readLocator
+//            val localBroadcastManager = LocalBroadcastManager.getInstance(this)
+//            val intent = Intent(FolioReader.ACTION_SAVE_READ_LOCATOR)
+//            intent.putExtra(FolioReader.EXTRA_READ_LOCATOR, readLocator as Parcelable?)
+//            localBroadcastManager.sendBroadcast(intent)
+//            val dialog = Dialog(this, R.style.DialogCustomTheme)
+//            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//            dialog.setContentView(R.layout.dialog_bookmark)
+//            dialog.show()
+//            dialog.setCanceledOnTouchOutside(true)
+//            dialog.setOnCancelListener {
+//                Toast.makeText(
+//                    this, "please enter a Bookmark name and then press Save", Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//            dialog.findViewById<View>(R.id.btn_save_bookmark).setOnClickListener {
+//                val name =
+//                    (dialog.findViewById<View>(R.id.bookmark_name) as EditText).text.toString()
+//                if (!TextUtils.isEmpty(name)) {
+//                    val simpleDateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+//                    val id = BookmarkTable(this).insertBookmark(
+//                        mBookId,
+//                        simpleDateFormat.format(Date()),
+//                        name,
+//                        bookmarkReadLocator?.toJson().toString()
+//                    )
+//                    Toast.makeText(
+//                        this, getString(R.string.book_mark_success), Toast.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    Toast.makeText(
+//                        this,
+//                        "please Enter a Bookmark name and then press Save",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//                dialog.dismiss()
+//            }
+//
+//
+//            dialog.findViewById<View>(R.id.close_button).setOnClickListener {
+//                dialog.dismiss()
+//            }
+//        }
 
         font.setOnClickListener {
             Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + "Font")

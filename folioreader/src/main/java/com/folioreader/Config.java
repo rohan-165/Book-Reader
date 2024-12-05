@@ -37,7 +37,7 @@ public class Config implements Parcelable {
             ContextCompat.getColor(AppContext.get(), R.color.default_theme_accent_color);
 
     private String font = "Roboto";
-    private int fontSize = 2;
+    private int fontSize = 4;
     private boolean nightMode;
     @ColorInt
     private int themeColor = DEFAULT_THEME_COLOR_INT;
@@ -104,7 +104,7 @@ public class Config implements Parcelable {
                 setDefaults();
             } else {
                 font = getBundleItem(bundle, CONFIG_FONT, "Roboto");
-                fontSize = getBundleItem(bundle, CONFIG_FONT_SIZE, 2);
+                fontSize = getBundleItem(bundle, CONFIG_FONT_SIZE, 4);
                 nightMode = getBundleItem(bundle, CONFIG_IS_NIGHT_MODE, false);
                 themeColor = getBundleItem(bundle, CONFIG_THEME_COLOR_INT, DEFAULT_THEME_COLOR_INT);
                 nightThemeColor = getBundleItem(bundle, CONFIG_NIGHT_THEME_COLOR_INT, DEFAULT_THEME_COLOR_INT);
@@ -128,7 +128,7 @@ public class Config implements Parcelable {
 
     private void setDefaults() {
         font = "Roboto";
-        fontSize = 2;
+        fontSize = 4;
         nightMode = false;
         themeColor = DEFAULT_THEME_COLOR_INT;
         nightThemeColor = themeColor;
@@ -156,7 +156,7 @@ public class Config implements Parcelable {
         } catch(Exception e) {
             Log.i("Parse Error", "Bundle does not exist, using default configuration.");
         }
-        fontSize = getJsonItem(obj, CONFIG_FONT_SIZE, 2);
+        fontSize = getJsonItem(obj, CONFIG_FONT_SIZE, 4);
         nightMode = getJsonItem(obj, CONFIG_IS_NIGHT_MODE, false);
         themeColor = getValidColorInt(getJsonItem(obj, CONFIG_THEME_COLOR_INT, DEFAULT_THEME_COLOR_INT));
         nightThemeColor = getValidColorInt(getJsonItem(obj, CONFIG_NIGHT_THEME_COLOR_INT, DEFAULT_THEME_COLOR_INT));

@@ -67,7 +67,7 @@
         app:layout_constraintBottom_toTopOf="@+id/font_text_subtitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/font_text_subtitle"
-        android:text="Font Style"
+        android:text="Font Size"
         tools:ignore="MissingConstraints,NotSibling" />
 
     <TextView
@@ -81,7 +81,7 @@
         app:layout_constraintBottom_toTopOf="@+id/view_config_font_size_seek_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/font_text_title"
-        android:text="Customize text size for improved readability and a more comfortable experience."
+        android:text="Adjust the text size to enhance readability  and better experience."
         tools:ignore="MissingConstraints,NotSibling" />
 
     <TextView

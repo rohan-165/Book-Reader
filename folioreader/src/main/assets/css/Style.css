@@ -266,16 +266,16 @@ font-family: "lora", serif !important;
 font-family: "raleway", sans-serif !important;
 }
 
-.textSizeOne *{ font-size: 13px ; }
-.textSizeOnePlus *{ font-size: 14px ; }
-.textSizeTwo * { font-size: 15px ; }
-.textSizeTwoPlus * { font-size: 16px ; }
-.textSizeThree * { font-size: 17px ; }
-.textSizeThreePlus * { font-size: 18px ; }
-.textSizeFour * { font-size: 19px ; }
-.textSizeFourPlus * { font-size: 20px ; }
-.textSizeFive * { font-size: 21px ; }
-.textSizeFivePlus * { font-size: 22px ; }
+.textSizeOne *{ font-size: 17px ; }
+.textSizeOnePlus *{ font-size: 18px ; }
+.textSizeTwo * { font-size: 19px ; }
+.textSizeTwoPlus * { font-size: 20px ; }
+.textSizeThree * { font-size: 21px ; }
+.textSizeThreePlus * { font-size: 22px ; }
+.textSizeFour * { font-size: 23px ; }
+.textSizeFourPlus * { font-size: 24px ; }
+.textSizeFive * { font-size: 25px ; }
+.textSizeFivePlus * { font-size: 26px ; }
 
 h1 {
 font-size: 2em !important;

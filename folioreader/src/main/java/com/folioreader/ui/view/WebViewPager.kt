@@ -11,6 +11,7 @@ import androidx.core.view.GestureDetectorCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.folioreader.R
+import com.folioreader.ui.activity.FolioActivity
 import com.folioreader.ui.fragment.FolioPageFragment
 
 class WebViewPager : ViewPager {
