@@ -30,8 +30,10 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.os.Parcelable
+import android.provider.Settings
 import android.text.TextUtils
 import android.util.DisplayMetrics
 import android.util.Log
@@ -87,6 +89,7 @@ import kotlin.math.ceil
 
 class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControllerCallback,
     View.OnSystemUiVisibilityChangeListener {
+    private  val MANAGE_EXTERNAL_STORAGE_REQUEST = 1001
     private var bookFileName: String? = null
 
     private var mFolioPageViewPager: DirectionalViewpager? = null
@@ -306,6 +309,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         pageTrackerViewModel.chapterPage.observe(this, androidx.lifecycle.Observer {
             pageCountTextView?.text = it
         })
+        Log.d("StoragePermission", "Permission Permission :: ${(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)}")
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
