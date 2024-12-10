@@ -311,20 +311,20 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         })
         Log.d("StoragePermission", "Permission Permission :: ${(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)}")
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(
-                    this, Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    this, getWriteExternalStoragePerms(), WRITE_EXTERNAL_STORAGE_REQUEST
-                )
-            } else {
-                setupBook()
-            }
-        } else {
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+//            if (ContextCompat.checkSelfPermission(
+//                    this, Manifest.permission.WRITE_EXTERNAL_STORAGE
+//                ) != PackageManager.PERMISSION_GRANTED
+//            ) {
+//                ActivityCompat.requestPermissions(
+//                    this, getWriteExternalStoragePerms(), WRITE_EXTERNAL_STORAGE_REQUEST
+//                )
+//            } else {
+//                setupBook()
+//            }
+//        } else {
             setupBook()
-        }
+//        }
     }
 
     private fun initActionBar() {

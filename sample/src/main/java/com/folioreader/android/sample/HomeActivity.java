@@ -96,13 +96,13 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        Config config = AppUtil.getSavedConfig(getApplicationContext());
-        if (config == null)
-            config = new Config();
-        config.setAllowedDirection(Config.AllowedDirection.ONLY_HORIZONTAL);
-
-        folioReader.setConfig(config, true)
-                .openBook(R.raw.four);
+//        Config config = AppUtil.getSavedConfig(getApplicationContext());
+//        if (config == null)
+//            config = new Config();
+//        config.setAllowedDirection(Config.AllowedDirection.ONLY_HORIZONTAL);
+//
+//        folioReader.setConfig(config, true)
+//                .openBook(R.raw.four);
     }
 
     private ReadLocator getLastReadLocator() {
