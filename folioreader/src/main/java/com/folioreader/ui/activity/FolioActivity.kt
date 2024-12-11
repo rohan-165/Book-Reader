@@ -780,11 +780,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
      */
     override fun getTopDistraction(unit: DisplayUnit): Int {
 
-        var topDistraction = 20
-//        if (!distractionFreeMode) {
-//            topDistraction = statusBarHeight
-//            if (actionBar != null) topDistraction += actionBar!!.height
-//        }
+        var topDistraction = 0
+        if (!distractionFreeMode) {
+            topDistraction = statusBarHeight
+            if (actionBar != null) topDistraction += actionBar!!.height
+        }
 
         return when (unit) {
             DisplayUnit.PX -> topDistraction
