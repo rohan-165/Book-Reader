@@ -906,6 +906,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     private fun showSystemUI() {
         Log.v(LOG_TAG, "-> showSystemUI")
+        mFolioPageViewPager?.setPadding(0,120,0,20);
 
         if (Build.VERSION.SDK_INT >= 16) {
             val decorView = window.decorView
@@ -920,6 +921,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     private fun hideSystemUI() {
         Log.v(LOG_TAG, "-> hideSystemUI")
+        mFolioPageViewPager?.setPadding(0,0,0,0);
 
         if (Build.VERSION.SDK_INT >= 16) {
             val decorView = window.decorView
